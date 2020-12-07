@@ -1,28 +1,32 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <component :is="layout">
+      <router-view />
+    </component>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+const DefaultLayout = () =>
+  import(/* webpackChunkName: "vsf-layout-default" */ "./layouts/Default");
+const AuthLayout = () =>
+  import(/* webpackChunkName: "vsf-layout-default" */ "./layouts/Auth");
 
 export default {
-  name: 'App',
   components: {
-    HelloWorld
-  }
-}
+    DefaultLayout,
+    AuthLayout,
+  },
+  data() {
+    return {
+      layout: "default-layout",
+    };
+  },
+  name: "App",
+  created() {
+  },
+};
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>
