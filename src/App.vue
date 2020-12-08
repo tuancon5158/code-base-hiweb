@@ -8,9 +8,9 @@
 
 <script>
 const DefaultLayout = () =>
-  import(/* webpackChunkName: "vsf-layout-default" */ "./layouts/default");
+  import( "./layouts/default");
 const AuthLayout = () =>
-  import(/* webpackChunkName: "vsf-layout-default" */ "./layouts/Auth");
+  import("./layouts/Auth");
 
 export default {
   components: {
