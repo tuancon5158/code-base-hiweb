@@ -1,5 +1,8 @@
 <template>
   <div>
+    <div class="test-scss">tuancon</div>
+    <div class="class">tuancon</div>
+
     <v-row align="center" justify="space-around">
       <v-btn depressed> Normal </v-btn>
       <v-btn depressed color="primary"> Primary </v-btn>
@@ -72,4 +75,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.class{
+  background: $color-checkbox;
+}
+
 </style>

@@ -1,31 +1,14 @@
 <template>
   <div id="app">
     <component :is="layout">
-      <v-app>
       <router-view />
-        <div>
-          <v-alert border="top" color="red lighten-2" dark>
-            I'm an alert with a top border and red color
-          </v-alert>
-          <v-alert border="right" color="blue-grey" dark>
-            I'm an alert with a right border and blue-grey color
-          </v-alert>
-          <v-alert border="bottom" color="pink darken-1" dark>
-            I'm an alert with a bottom border and pink color
-          </v-alert>
-          <v-alert border="left" color="indigo" dark>
-            I'm an alert with a border left type info
-          </v-alert>
-        </div>
-        <v-app-bar app color="primary" dark> aasdasds </v-app-bar>
-      </v-app>
     </component>
   </div>
 </template>
 
 <script>
 const DefaultLayout = () =>
-  import(/* webpackChunkName: "vsf-layout-default" */ "./layouts/Default");
+  import(/* webpackChunkName: "vsf-layout-default" */ "./layouts/default");
 const AuthLayout = () =>
   import(/* webpackChunkName: "vsf-layout-default" */ "./layouts/Auth");
 
@@ -40,7 +23,14 @@ export default {
     };
   },
   name: "App",
-  created() {},
+  created() {
+    if (localStorage.getItem("token")) {
+      this.layout = "default-layout";
+    } else {
+      this.layout = "auth-layout";
+      this.$router.push("login");
+    }
+  },
 };
 </script>
 

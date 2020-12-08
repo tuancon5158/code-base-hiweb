@@ -1,5 +1,5 @@
 <template>
-  <div>Login</div>
+  <v-app> <slot /> </v-app>
 </template>
 
 <script>

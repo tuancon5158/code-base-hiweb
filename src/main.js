@@ -4,6 +4,7 @@ import i18n from './lang'
 import router from './router'
 import Vuelidate from 'vuelidate'
 import vuetify from '@/plugins/vuetify'
+import "./assets/css/main.scss";
 // import 'vuetify/dist/vuetify.min.css'
 
 Vue.config.productionTip = false

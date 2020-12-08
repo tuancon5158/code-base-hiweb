@@ -1,9 +1,5 @@
 <template>
-  <div>
-    <header>header</header>
-    <slot />
-    <footer>footer</footer>
-  </div>
+  <v-app> <slot /> </v-app>
 </template>
 
 <script>

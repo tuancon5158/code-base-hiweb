@@ -1,0 +1,14 @@
+$main-color: #4181cb;
+$color-input: #73b3e9;
+$color-checkbox: #009c28;
+
+@for $i from 10 through 30 {
+  .fz-#{$i} {
+    font-size: #{$i}px !important ;
+  }
+}
+@for $i from 50 through 300 {
+  .max-width-#{$i} {
+    max-width: #{$i}px !important ;
+  }
+}
