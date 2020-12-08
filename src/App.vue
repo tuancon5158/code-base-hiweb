@@ -9,7 +9,7 @@
 <script>
 const DefaultLayout = () => import("./layouts/default");
 const AuthLayout = () => import("./layouts/Auth");
-
+import STORAGE_NAME from '@/const/storage'
 export default {
   components: {
     DefaultLayout,
@@ -23,7 +23,7 @@ export default {
   name: "App",
   created() {
     //TODO middleware check auth .....
-    if (localStorage.getItem("token")) {
+    if (localStorage.getItem(STORAGE_NAME.TOKEN)) {
       this.layout = "default-layout";
       this.$router.push("/");
     } else {
