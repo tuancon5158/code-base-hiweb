@@ -10,7 +10,7 @@
         grow
       >
         <v-tabs-slider color="purple darken-4"></v-tabs-slider>
-        <v-tab v-for="i in tabs" :key="i">
+        <v-tab v-for="i in tabs" :key="i.icon">
           <v-icon large>{{ i.icon }}</v-icon>
           <div class="caption py-1">{{ i.name }}</div>
         </v-tab>
@@ -42,9 +42,9 @@
                   </v-col>
                   <v-col class="d-flex" cols="12" sm="6" xsm="12"> </v-col>
                   <v-spacer></v-spacer>
-                  <v-col class="d-flex" cols="12" sm="3" xsm="12" align-end>
+                  <v-col class="d-flex" cols="12" sm="12" xsm="12" align-end>
                     <v-btn @click="onLogin" x-large block color="success">
-                      Login
+                      Click to Login
                     </v-btn>
                   </v-col>
                 </v-row>
@@ -139,7 +139,7 @@ export default {
   },
   methods: {
     onLogin() {
-      localStorage.setItem("token", "abc");
+      this.$store.commit("setAuthCheck", true);
       this.$router.push("/");
     },
     validate() {

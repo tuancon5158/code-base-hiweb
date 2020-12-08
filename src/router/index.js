@@ -1,9 +1,9 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-const Home = () => import(/* webpackChunkName:*/ "@/pages/home");
-const Profile = () => import(/* webpackChunkName:  */ "@/pages/profile");
-const Page404 = () => import(/* webpackChunkName: */ "@/pages/404");
-const PageAuth = () => import(/* webpackChunkName:  */ "@/pages/auth");
+const Home = () => import(/* webpackChunkName: "" */ "@/pages/home");
+const Profile = () => import(/* webpackChunkName: "" */ "@/pages/profile");
+const Page404 = () => import(/* webpackChunkName: "" */ "@/pages/404");
+const PageAuth = () => import(/* webpackChunkName: "" */ "@/pages/auth");
 
 Vue.use(VueRouter);
 
