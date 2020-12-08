@@ -1,7 +1,6 @@
 const STORAGE_NAME = {
   TOKEN: "token",
-  //accessToken
-  ACCESS_TOKEN: "accessToken",
+  ACCESS_TOKEN: "access-token",
   AUTHORIZATION: "Authorization",
 };
 
