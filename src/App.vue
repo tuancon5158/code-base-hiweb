@@ -22,13 +22,11 @@ export default {
   },
   name: "App",
   created() {
-    console.log("this.$store", this.$store);
+    //TODO middleware check auth .....
     if (localStorage.getItem("token")) {
-      console.log("1");
       this.layout = "default-layout";
-       this.$router.push("/");
+      this.$router.push("/");
     } else {
-      console.log("2");
       this.layout = "auth-layout";
       this.$router.push("login");
     }
