@@ -5,6 +5,9 @@ import router from './router'
 import Vuelidate from 'vuelidate'
 import vuetify from '@/plugins/vuetify'
 import "./assets/css/main.scss";
+import '@/plugins/components';
+import * as filters from '@/filters'
+
 // import 'vuetify/dist/vuetify.min.css'
 
 Vue.config.productionTip = false
@@ -12,6 +15,11 @@ Vue.config.productionTip = false
 // jQuery
 import $ from 'jquery';
 window.$ = $; window.jQuery = $;
+
+// register global utility filters.
+Object.keys(filters).forEach(key => {
+  Vue.filter(key, filters[key])
+})
 
 //Vuelidate
 Vue.use(Vuelidate)
