@@ -6,7 +6,7 @@ import { HOST } from "@/api/domain";
 let service;
 const api = {
   init() {
-    service = axios.create({ baseURL: HOST.PRODUCT_SERVICE });
+    service = axios.create({ baseURL: "process....." });
     this.initAccessTokenClient();
     service.interceptors.response.use(this.handleSuccess, this.handleError);
   },
