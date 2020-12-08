@@ -1,5 +1,5 @@
 import Vue from 'vue'
 
-// Text avatar
+// Loading
 import Loading from '@/components/Loading';
 Vue.component('loading-component', Loading);
