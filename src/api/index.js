@@ -16,13 +16,6 @@ const api = {
   handleError(error) {
     return Promise.reject(error);
   },
-  initAccessTokenClient() {
-    if (!Cookie) return;
-    const accessToken = Cookie.get(STORAGE_NAME.ACCESS_TOKEN);
-    if (!accessToken) return;
-    service.defaults.headers.common[STORAGE_NAME.ACCESS_TOKEN] = accessToken;
-    service.defaults.headers.common[STORAGE_NAME.AUTHORIZATION] = accessToken;
-  },
   setAccessToken(accessToken) {
     service.defaults.headers.common[STORAGE_NAME.ACCESS_TOKEN] = accessToken;
     service.defaults.headers.common[STORAGE_NAME.AUTHORIZATION] = accessToken;
