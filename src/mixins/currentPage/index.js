@@ -1,46 +1,29 @@
-import { isServer } from '@vue-storefront/core/helpers'
-
 export default {
-  data () {
+  data() {
     return {
-      productPageRoutes: [
-        'product',
-        'virtual-product',
-        'bundle-product',
-        'simple-product',
-        'downloadable-product',
-        'grouped-product',
-        'configurable-product'
-      ],
+      productPageRoutes: [],
       isProductPage: false,
-      isCheckoutPage: false
-    }
+      isCheckoutPage: false,
+    };
   },
   watch: {
-    '$route.name': function () {
-      this.setCurrentPage()
-    }
+    "$route.name": function() {
+      this.setCurrentPage();
+    },
   },
   computed: {
-    canGoBack () {
-      return !this.isHistoryEmpty() && this.isProductPage
-    }
+    canGoBack() {
+      return !this.isHistoryEmpty() && this.isProductPage;
+    },
   },
-  created () {
-    this.setCurrentPage()
+  created() {
+    this.setCurrentPage();
   },
   methods: {
-    setCurrentPage () {
-      this.isProductPage = !!this.$route.params.parentSku
-      this.isCheckoutPage = this.$route.name === 'checkout'
+    setCurrentPage() {
+      this.isProductPage = !!this.$route.params.parentSku;
+      this.isCheckoutPage = this.$route.name === "checkout";
     },
     // Check if history is empty
-    isHistoryEmpty () {
-      if (!isServer) {
-        return window.history.length <= 1
-      }
-
-      return false
-    }
-  }
-}
+  },
+};
