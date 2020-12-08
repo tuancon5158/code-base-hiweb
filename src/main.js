@@ -9,7 +9,6 @@ import "./assets/css/main.scss";
 import "@/plugins/components";
 import * as filters from "@/filters";
 
-// import 'vuetify/dist/vuetify.min.css'
 
 Vue.config.productionTip = false;
 
