@@ -1,24 +1,23 @@
-import Vue from "vue";
-import App from "./App.vue";
-import i18n from "./lang";
-import router from "./router";
-import Vuelidate from "vuelidate";
-import vuetify from "@/plugins/vuetify";
-import store from "./store";
-import "./assets/css/main.scss";
-import "@/plugins/components";
-import * as filters from "@/filters";
-
+import Vue from 'vue';
+import App from './App.vue';
+import i18n from './lang';
+import router from './router';
+import Vuelidate from 'vuelidate';
+import vuetify from '@/plugins/vuetify';
+import store from './store';
+import './assets/css/main.scss';
+import '@/plugins/components';
+import * as filters from '@/filters';
 
 Vue.config.productionTip = false;
 
 // jQuery
-import $ from "jquery";
+import $ from 'jquery';
 window.$ = $;
 window.jQuery = $;
 
 // register global utility filters.
-Object.keys(filters).forEach((key) => {
+Object.keys(filters).forEach(key => {
   Vue.filter(key, filters[key]);
 });
 
@@ -30,5 +29,5 @@ new Vue({
   vuetify,
   store,
   router,
-  render: (h) => h(App),
-}).$mount("#app");
+  render: h => h(App),
+}).$mount('#app');

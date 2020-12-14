@@ -18,8 +18,8 @@ export default {
   },
   methods: {
     onLogout() {
-      this.$store.commit("setAuthCheck", false);
-      this.$router.push("/login");
+      this.$store.commit('setAuthCheck', false);
+      this.$router.push('/login');
     },
   },
 };

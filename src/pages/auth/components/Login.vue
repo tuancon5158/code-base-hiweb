@@ -1,14 +1,7 @@
 <template>
   <v-dialog v-model="dialog" persistent max-width="600px" min-width="360px">
     <div>
-      <v-tabs
-        v-model="tab"
-        show-arrows
-        background-color="deep-purple accent-4"
-        icons-and-text
-        dark
-        grow
-      >
+      <v-tabs v-model="tab" show-arrows background-color="deep-purple accent-4" icons-and-text dark grow>
         <v-tabs-slider color="purple darken-4"></v-tabs-slider>
         <v-tab v-for="i in tabs" :key="i.icon">
           <v-icon large>{{ i.icon }}</v-icon>
@@ -20,12 +13,7 @@
               <v-form ref="loginForm" v-model="valid" lazy-validation>
                 <v-row>
                   <v-col cols="12">
-                    <v-text-field
-                      v-model="loginEmail"
-                      :rules="loginEmailRules"
-                      label="E-mail"
-                      required
-                    ></v-text-field>
+                    <v-text-field v-model="loginEmail" :rules="loginEmailRules" label="E-mail" required></v-text-field>
                   </v-col>
                   <v-col cols="12">
                     <v-text-field
@@ -43,9 +31,7 @@
                   <v-col class="d-flex" cols="12" sm="6" xsm="12"> </v-col>
                   <v-spacer></v-spacer>
                   <v-col class="d-flex" cols="12" sm="12" xsm="12" align-end>
-                    <v-btn @click="onLogin" x-large block color="success">
-                      Click to Login
-                    </v-btn>
+                    <v-btn @click="onLogin" x-large block color="success"> Click to Login </v-btn>
                   </v-col>
                 </v-row>
               </v-form>
@@ -76,12 +62,7 @@
                     ></v-text-field>
                   </v-col>
                   <v-col cols="12">
-                    <v-text-field
-                      v-model="email"
-                      :rules="emailRules"
-                      label="E-mail"
-                      required
-                    ></v-text-field>
+                    <v-text-field v-model="email" :rules="emailRules" label="E-mail" required></v-text-field>
                   </v-col>
                   <v-col cols="12">
                     <v-text-field
@@ -111,14 +92,7 @@
                   </v-col>
                   <v-spacer></v-spacer>
                   <v-col class="d-flex ml-auto" cols="12" sm="3" xsm="12">
-                    <v-btn
-                      x-large
-                      block
-                      :disabled="!valid"
-                      color="success"
-                      @click="validate"
-                      >Register</v-btn
-                    >
+                    <v-btn x-large block :disabled="!valid" color="success" @click="validate">Register</v-btn>
                   </v-col>
                 </v-row>
               </v-form>
@@ -134,13 +108,13 @@
 export default {
   computed: {
     passwordMatch() {
-      return () => this.password === this.verify || "Password must match";
+      return () => this.password === this.verify || 'Password must match';
     },
   },
   methods: {
     onLogin() {
-      this.$store.commit("setAuthCheck", true);
-      this.$router.push("/");
+      this.$store.commit('setAuthCheck', true);
+      this.$router.push('/');
     },
     validate() {
       if (this.$refs.loginForm.validate()) {
@@ -158,35 +132,28 @@ export default {
     dialog: true,
     tab: 0,
     tabs: [
-      { name: "Login", icon: "mdi-account" },
-      { name: "Register", icon: "mdi-account-outline" },
+      { name: 'Login', icon: 'mdi-account' },
+      { name: 'Register', icon: 'mdi-account-outline' },
     ],
     valid: true,
 
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
-    verify: "",
-    loginPassword: "",
-    loginEmail: "",
-    loginEmailRules: [
-      (v) => !!v || "Required",
-      (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
-    ],
-    emailRules: [
-      (v) => !!v || "Required",
-      (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
-    ],
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+    verify: '',
+    loginPassword: '',
+    loginEmail: '',
+    loginEmailRules: [v => !!v || 'Required', v => /.+@.+\..+/.test(v) || 'E-mail must be valid'],
+    emailRules: [v => !!v || 'Required', v => /.+@.+\..+/.test(v) || 'E-mail must be valid'],
 
     show1: false,
     rules: {
-      required: (value) => !!value || "Required.",
-      min: (v) => (v && v.length >= 8) || "Min 8 characters",
+      required: value => !!value || 'Required.',
+      min: v => (v && v.length >= 8) || 'Min 8 characters',
     },
   }),
 };
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

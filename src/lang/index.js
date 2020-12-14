@@ -1,23 +1,23 @@
-import Vue from 'vue'
-import VueI18n from 'vue-i18n'
-import Cookies from 'js-cookie'
-import enLocale from './en'
-import viLocale from './vi'
+import Vue from 'vue';
+import VueI18n from 'vue-i18n';
+import Cookies from 'js-cookie';
+import enLocale from './en';
+import viLocale from './vi';
 
-Vue.use(VueI18n)
+Vue.use(VueI18n);
 
 const messages = {
   en: {
-    ...enLocale
+    ...enLocale,
   },
   vi: {
-    ...viLocale
-  }
-}
+    ...viLocale,
+  },
+};
 
 const i18n = new VueI18n({
   locale: Cookies.get('language') || 'vi', // set locale
-  messages // set locale messages
-})
+  messages, // set locale messages
+});
 
-export default i18n
+export default i18n;

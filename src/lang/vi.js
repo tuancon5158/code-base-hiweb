@@ -1,3 +1,3 @@
 export default {
-  test: 'test lang'
-}
+  test: 'test lang',
+};

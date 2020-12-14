@@ -3,8 +3,8 @@ const state = {
   authCheck: false,
 };
 const getters = {
-  user: (state) => state.user,
-  isAuthticated: (state) => !!state.user,
+  user: state => state.user,
+  isAuthticated: state => !!state.user,
 };
 const mutations = {
   setAuthCheck(state, check) {
