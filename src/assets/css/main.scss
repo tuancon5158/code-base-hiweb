@@ -1,4 +1,6 @@
-@import "./variables.scss";
-.class{
-    color:$main-color
+@import './variables.scss';
+@import './normalize.scss';
+
+.class {
+  color: $main-color;
 }

@@ -4,6 +4,28 @@ import 'vuetify/dist/vuetify.min.css';
 
 Vue.use(Vuetify);
 
-// const opts = {}
+// config color theme
 
-export default new Vuetify();
+const opts = {
+  theme: {
+    light: true,
+    themes: {
+      light: {
+        primary: '#1C3E3F',
+        secondary: '#b0bec5',
+        anchor: '#1C3E3F',
+      },
+      dark: {
+        primary: 'red',
+        secondary: '#424242',
+        accent: '#FF4081',
+        error: '#FF5252',
+        info: '#2196F3',
+        success: '#4CAF50',
+        warning: '#FB8C00',
+      },
+    },
+  },
+};
+
+export default new Vuetify(opts);

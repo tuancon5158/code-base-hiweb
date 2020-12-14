@@ -1,12 +1,13 @@
-const Cookie = require("js-cookie");
-import store from "../store";
-import axios from "axios";
-import STORAGE_NAME from "@/const/storage";
-import { HOST } from "@/api/domain";
+// eslint-disable-next-line no-undef
+const Cookie = require('js-cookie');
+import store from '../store';
+import axios from 'axios';
+import STORAGE_NAME from '@/const/storage';
+import { HOST } from '@/api/domain';
 let service;
 const api = {
   init() {
-    service = axios.create({ baseURL: "process....." });
+    service = axios.create({ baseURL: 'process.....' });
     this.initAccessTokenClient();
     service.interceptors.response.use(this.handleSuccess, this.handleError);
   },
@@ -25,32 +26,32 @@ const api = {
   },
   patch(path, payload) {
     return service.request({
-      method: "PATCH",
+      method: 'PATCH',
       url: path,
-      responseType: "json",
+      responseType: 'json',
       data: payload,
     });
   },
   put(path, payload) {
     return service.request({
-      method: "PUT",
+      method: 'PUT',
       url: path,
-      responseType: "json",
+      responseType: 'json',
       data: payload,
     });
   },
   delete(path) {
     return service.request({
-      method: "DELETE",
+      method: 'DELETE',
       url: path,
-      responseType: "json",
+      responseType: 'json',
     });
   },
   post(path, payload) {
     return service.request({
-      method: "POST",
+      method: 'POST',
       url: path,
-      responseType: "json",
+      responseType: 'json',
       data: payload,
     });
   },
