@@ -7,7 +7,7 @@
 </template>
 
 <script>
-const DefaultLayout = () => import('./layouts/default');
+const DefaultLayout = () => import('./layouts/Default');
 const AuthLayout = () => import('./layouts/Auth');
 import STORAGE_NAME from '@/const/storage';
 export default {

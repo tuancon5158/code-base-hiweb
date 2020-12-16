@@ -1,7 +1,8 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import productRoutes from '@/router/website/products';
 const Home = () => import(/* webpackChunkName: "" */ '@/views/home');
-const Profile = () => import(/* webpackChunkName: "" */ '@/views/profile');
+const Website = () => import(/* webpackChunkName: "" */ '@/views/website');
 const Page404 = () => import(/* webpackChunkName: "" */ '@/views/404');
 const PageAuth = () => import(/* webpackChunkName: "" */ '@/views/auth');
 
@@ -12,17 +13,18 @@ export default new VueRouter({
   routes: [
     {
       path: '/',
-      name: 'Home',
+      name: 'home',
       component: Home,
     },
     {
-      path: '/profile',
-      name: 'Profile',
-      component: Profile,
+      path: '/w/:domain',
+      name: 'website',
+      component: Website,
+      children: [...productRoutes],
     },
     {
       path: '/login',
-      name: 'PageAuth',
+      name: 'pageLogin',
       component: PageAuth,
     },
     { path: '/404', component: Page404 },
