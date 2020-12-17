@@ -25,11 +25,11 @@ export default {
   name: 'App',
   watch: {
     // eslint-disable-next-line prettier/prettier
-    $route: function (to, form) {
-      if ((to.name === 'home' && form.name === 'auth') || (to.name === 'auth' && form.name === 'home')) {
-        this.getLayout();
-      }
-    },
+    // $route: function (to, form) {
+    //   if ((to.name === 'home' && form.name === 'auth') || (to.name === 'auth' && form.name === 'home')) {
+    //     this.getLayout();
+    //   }
+    // },
   },
   methods: {
     getLayout() {

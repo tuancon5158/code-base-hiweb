@@ -54,13 +54,8 @@ export default {
   },
 };
 </script>
-<style lang="scss">
-.login-form {
-  padding: 10rem 2rem;
-  width: 350px;
-  @include flex();
-}
-.login-form h1 {
+<style lang="scss" scoped>
+h1 {
   font-size: 3.2rem;
 }
 .show-password {
@@ -72,10 +67,5 @@ export default {
   font-size: 1.3rem;
   color: $main-color;
   cursor: pointer;
-}
-@media only screen and (max-width: 600px) {
-  .login-form {
-    width: 100% !important;
-  }
 }
 </style>

@@ -4,6 +4,8 @@
       <Login v-if="!authPage || authPage === 'login'" />
       <Register v-if="authPage === 'register'" />
       <Forgot v-if="authPage === 'forgot'" />
+      <!-- //shop && token -->
+      <Shop v-if="authPage === 'shop'" />
     </v-row>
   </div>
 </template>
@@ -11,6 +13,7 @@
 import Login from './components/Login';
 import Register from './components/Register';
 import Forgot from './components/Forgot';
+import Shop from './components/Shop';
 
 export default {
   props: ['authPage'],
@@ -18,6 +21,7 @@ export default {
     Login,
     Register,
     Forgot,
+    Shop,
   },
 };
 </script>

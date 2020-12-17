@@ -48,7 +48,7 @@ export default {
       this.isLoading = true;
       this.$store.commit('setAuthCheck', true);
       window.localStorage.setItem(STORAGE_NAME.TOKEN, 'user');
-      this.$router.push('/');
+      this.$router.push('/auth/shop');
       setTimeout(() => {
         this.isLoading = false;
       }, 2000);
