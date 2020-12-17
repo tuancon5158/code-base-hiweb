@@ -11,7 +11,7 @@ const opts = {
     light: true,
     themes: {
       light: {
-        primary: '#1C3E3F',
+        primary: '#08a0e0',
         secondary: '#b0bec5',
         anchor: '#1C3E3F',
       },

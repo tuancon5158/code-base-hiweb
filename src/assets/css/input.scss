@@ -1,0 +1,92 @@
+//all input Vuetify
+
+.v-input:not(.v-input--checkbox):not(.v-input--radio-group--column) {
+  &.error--text {
+    .v-input__slot {
+      border: 0.01px solid red !important;
+    }
+  }
+  .v-input__slot {
+    background: #f5f6f7 !important;
+    border: 0.01px solid #dddd;
+    border-radius: 8px !important;
+    color: #363f44;
+  }
+}
+.v-input.v-input--is-focused:not(.v-input--checkbox):not(.v-input--radio-group--column) {
+  .v-input__slot {
+    background: white !important;
+    border: 0.01px solid #08a0e0 !important;
+  }
+  .v-input__slot::before {
+    bottom: 0 !important;
+    content: none !important;
+  }
+  .v-input__slot::after {
+    bottom: 0 !important;
+    content: none !important;
+  }
+}
+.v-text-field {
+  padding: 0;
+}
+//remove boder
+.v-input__slot::before {
+  bottom: 0 !important;
+  content: none !important;
+}
+
+//height v-text field
+.v-input.v-text-field:not(.v-textarea) {
+  .v-input__slot {
+    height: 36px;
+    input {
+      padding: 10px 15px !important;
+    }
+  }
+  .v-select__selection.v-select__selection--comma {
+    margin-left: 15px;
+  }
+}
+
+//height v-select
+.v-input.v-text-field.v-select:not(.v-textarea) {
+  .v-input__slot {
+    height: 36px;
+    input {
+      padding: 10px 15px !important;
+    }
+  }
+  .v-select__selection.v-select__selection--comma {
+    margin-left: 15px;
+  }
+}
+.v-input.v-select:not(.v-textarea) {
+  .v-input__slot {
+    height: 36px;
+    input {
+      padding: 10px 15px !important;
+    }
+  }
+}
+
+// v-text textarea
+.v-input.v-textarea {
+  .v-input__slot {
+    padding: 10px 15px !important;
+    textarea div {
+      padding: 10px 15px !important;
+    }
+  }
+}
+//check box
+.v-input--checkbox,
+.v-radio {
+  .v-icon {
+    color: #72cbff;
+    font-size: 27px !important;
+  }
+}
+.v-input--selection-controls__ripple {
+  display: none;
+}

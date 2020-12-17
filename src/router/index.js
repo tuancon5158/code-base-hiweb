@@ -22,12 +22,15 @@ export default new VueRouter({
       component: Website,
       children: [...productRoutes],
     },
+
     {
-      path: '/login',
-      name: 'pageLogin',
+      path: '/auth/:authPage?',
+      name: 'auth',
+      props: true,
       component: PageAuth,
     },
+
     { path: '/404', component: Page404 },
-    { path: '*', redirect: '/404' },
+    // { path: '*', redirect: '/404' },
   ],
 });

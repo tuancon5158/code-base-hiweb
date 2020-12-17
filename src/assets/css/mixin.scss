@@ -1,4 +1,3 @@
-
 @mixin align-top-button {
   position: absolute;
   right: 2vw;
@@ -7,4 +6,10 @@
 @mixin align-top-button-1vw {
   position: absolute;
   right: 1vw;
+}
+
+@mixin flex($justify: center, $align: center) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
 }

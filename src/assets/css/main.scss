@@ -1,6 +1,10 @@
 @import './variables.scss';
 @import './normalize.scss';
+@import './input.scss';
 
-.class {
-  color: $main-color;
+.label-form {
+  display: block;
+  font-size: 1.4rem;
+  color: #6d7a82;
+  font-weight: 700;
 }

@@ -1,23 +1,75 @@
 <template>
-  <div>
-    <code class="rounded-xl">Tuan con test</code>
-    <span class="white--text red pa-4 d-sm-none">tuan con</span>
-    <v-card class="pa-2 d-flex flex-row justify-center" outlined tile>
-      <div>I'm a flexbox container!</div>
-      <div>I'm a flexbox container!</div>
-      <div>I'm a flexbox container!</div>
-    </v-card>
-    <div>
-      <v-card class="mx-auto" height="100" max-width="200" color="secondary">
-        <v-card-text>This card has negative top margin applied</v-card-text>
-      </v-card>
-      <v-card class="mt-n3 mx-auto" elevation="12" height="200" max-width="300" color="secondary">
-        <v-card-text>This card has negative top margin applied</v-card-text>
-      </v-card>
-    </div>
-  </div>
+  <v-row no-gutters class="login-form">
+    <v-col>
+      <h1 class="d-none d-sm-flex">Sign in</h1>
+      <div>
+        <span class="label-form"> Email </span>
+        <v-text-field autocomplete="off" name="email" id="email"></v-text-field>
+      </div>
+      <div>
+        <span class="label-form"> Password </span>
+        <v-text-field :type="type" autocomplete="off" name="email" id="email">
+          <template slot="append">
+            <i
+              @click="type = type === 'text' ? 'password' : 'text'"
+              v-show="type === 'text'"
+              class="show-password far fa-eye-slash"
+            ></i>
+            <i
+              v-show="type === 'password'"
+              @click="type = type === 'text' ? 'password' : 'text'"
+              class="show-password far fa-eye"
+            ></i>
+          </template>
+        </v-text-field>
+      </div>
+      <div class="label-forgot">
+        <span @click="$router.push({ path: '/auth/forgot' })">Forgot password?</span>
+      </div>
+      <div class="mt-5">
+        <v-btn @click="onLogin" :loading="isLoading" width="100%" color="primary">Sign in</v-btn>
+      </div>
+      <div class="label-forgot mt-5">
+        <span @click="$router.push({ path: '/auth/register' })">Return to Sign in?</span>
+      </div>
+    </v-col>
+  </v-row>
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      type: 'password',
+      isLoading: false,
+    };
+  },
+  methods: {
+    onLogin() {
+      this.isLoading = true;
+      setTimeout(() => {
+        this.isLoading = false;
+      }, 2000);
+    },
+  },
+};
 </script>
+<style lang="scss">
+.login-form {
+  padding: 10rem 2rem;
+  width: 350px;
+}
+.login-form h1 {
+  font-size: 3.2rem;
+}
+.show-password {
+  cursor: pointer !important;
+  margin-right: 5px;
+  margin-top: 5px;
+}
+.label-forgot span {
+  font-size: 1.3rem;
+  color: $main-color;
+  cursor: pointer;
+}
+</style>

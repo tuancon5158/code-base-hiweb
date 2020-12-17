@@ -11,6 +11,8 @@ const DefaultLayout = () => import('./layouts/Default');
 const AuthLayout = () => import('./layouts/Auth');
 import STORAGE_NAME from '@/const/storage';
 export default {
+  props: ['authPage'],
+
   components: {
     DefaultLayout,
     AuthLayout,
@@ -28,7 +30,10 @@ export default {
       this.$router.push('/');
     } else {
       this.layout = 'auth-layout';
-      this.$router.push('login');
+      console.log(this.$router);
+      if (this.$router.currentRoute.name !== 'auth') {
+        this.$router.push(`auth/login`);
+      }
     }
   },
 };
