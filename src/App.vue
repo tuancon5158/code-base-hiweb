@@ -23,18 +23,31 @@ export default {
     };
   },
   name: 'App',
+  watch: {
+    // eslint-disable-next-line prettier/prettier
+    $route: function (to, form) {
+      if ((to.name === 'home' && form.name === 'auth') || (to.name === 'auth' && form.name === 'home')) {
+        this.getLayout();
+      }
+    },
+  },
+  methods: {
+    getLayout() {
+      if (localStorage.getItem(STORAGE_NAME.TOKEN)) {
+        this.layout = 'default-layout';
+        this.$router.push('/');
+      } else {
+        this.layout = 'auth-layout';
+        console.log(this.$router);
+        if (this.$router.currentRoute.name !== 'auth') {
+          this.$router.push(`auth/login`);
+        }
+      }
+    },
+  },
   created() {
     //TODO middleware check auth .....
-    if (localStorage.getItem(STORAGE_NAME.TOKEN)) {
-      this.layout = 'default-layout';
-      this.$router.push('/');
-    } else {
-      this.layout = 'auth-layout';
-      console.log(this.$router);
-      if (this.$router.currentRoute.name !== 'auth') {
-        this.$router.push(`auth/login`);
-      }
-    }
+    this.getLayout();
   },
 };
 </script>

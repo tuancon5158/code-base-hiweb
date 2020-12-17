@@ -20,11 +20,6 @@ export default {};
 </script>
 
 <style lang="scss" scoped>
-// .login {
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-// }
 .login-container {
   background: #fff;
   @include flex(center, flex-start);

@@ -1,5 +1,9 @@
 <template>
-  <v-app> <slot /> </v-app>
+  <v-app>
+    <v-main>
+      <v-container fluid style="padding: 0px; height: 100%"> <slot /> </v-container>
+    </v-main>
+  </v-app>
 </template>
 
 <script>
