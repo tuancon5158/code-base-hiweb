@@ -1,8 +1,6 @@
 <template>
   <v-app>
-    <v-main>
-      <v-container fluid style="padding: 0px; height: 100%"> <slot /> </v-container>
-    </v-main>
+    <slot></slot>
   </v-app>
 </template>
 
