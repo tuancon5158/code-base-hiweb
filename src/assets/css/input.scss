@@ -1,6 +1,6 @@
 //all input Vuetify
 
-.v-input:not(.v-input--checkbox):not(.v-input--radio-group--column) {
+.v-input:not(.v-input--checkbox):not(.v-input--radio-group--column):not(.v-input--switch):not(.v-input__slider) {
   &.error--text {
     .v-input__slot {
       border: 0.01px solid red !important;
@@ -8,15 +8,15 @@
   }
   .v-input__slot {
     background: #f5f6f7 !important;
-    border: 0.01px solid #dddd;
+    border: 0.01px solid $border-color;
     border-radius: 8px !important;
-    color: #363f44;
+    color: $input-color;
   }
 }
-.v-input.v-input--is-focused:not(.v-input--checkbox):not(.v-input--radio-group--column) {
+.v-input.v-input--is-focused:not(.v-input--checkbox):not(.v-input--radio-group--column):not(.v-input--switch):not(.v-input__slider) {
   .v-input__slot {
     background: white !important;
-    border: 0.01px solid #08a0e0 !important;
+    border: 0.01px solid $main-color !important;
   }
   .v-input__slot::before {
     bottom: 0 !important;
@@ -83,7 +83,7 @@
 .v-input--checkbox,
 .v-radio {
   .v-icon {
-    color: #72cbff;
+    color: $main-color;
     font-size: 27px !important;
   }
 }

@@ -5,15 +5,21 @@ import 'vuetify/dist/vuetify.min.css';
 Vue.use(Vuetify);
 
 // config color theme
-
+// Color HEX
 const opts = {
   theme: {
     light: true,
     themes: {
       light: {
         primary: '#08a0e0',
-        secondary: '#b0bec5',
+        secondary: '#424242',
+        accent: '#82B1FF',
+        error: '#FF5252',
+        info: '#2196F3',
+        success: '#4CAF50',
+        warning: '#FFC107',
         anchor: '#1C3E3F',
+        navi: '#f9fbfd',
       },
       dark: {
         primary: 'red',

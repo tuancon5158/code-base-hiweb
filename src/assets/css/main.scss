@@ -1,6 +1,7 @@
 @import './variables.scss';
 @import './normalize.scss';
 @import './input.scss';
+@import './button.scss';
 
 .label-form {
   display: block;
@@ -10,4 +11,7 @@
 }
 .pointer {
   cursor: pointer;
+}
+.page-list {
+  padding: 5px;
 }

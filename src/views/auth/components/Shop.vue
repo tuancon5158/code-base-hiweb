@@ -2,7 +2,7 @@
   <v-col cols="12" sm="8">
     <h1 class="d-none d-sm-flex">Select a shop</h1>
     <div class="select-shop-page">
-      <v-card @click="$router.push('/w/abc.hiwebio/products')" class="mx-auto d-flex align-center" tile>
+      <v-card @click="$router.push('/w/abc.hiwebio/')" class="mx-auto d-flex align-center" tile>
         <div class="pa-4">
           <v-avatar>
             <img src="https://cdn.vuetifyjs.com/images/john.jpg" alt="John" />

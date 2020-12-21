@@ -4,7 +4,8 @@
     <v-container fluid style="padding: 0px; height: 100%"
       ><div class="website-page">
         <template>
-          <div class="container">
+          <div class="website-container">
+            <!-- <loading-component /> -->
             <HomeIndex v-if="currentRouteName === 'website'" />
             <router-view v-else />
           </div>
@@ -45,16 +46,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.class {
-  background: $color-checkbox;
-}
 .website-page {
   background-color: #f9fbfd;
   @include flex(center, flex-start);
   height: 100%;
-  & .container {
-    margin: 2rem 0;
-    // max-width: 1284px;
+  & .website-container {
+    margin: 0.5rem 1rem;
     width: 100%;
     height: auto;
   }

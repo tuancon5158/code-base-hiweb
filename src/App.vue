@@ -25,29 +25,29 @@ export default {
   name: 'App',
   watch: {
     // eslint-disable-next-line prettier/prettier
-    $route: function (to, form) {
-      if (to.name === 'home' && form.path === '/auth/shop') {
-        this.layout = 'auth-layout';
+    $route: function (to, from) {
+      console.log(to, from);
+      if (to.name && from.name === 'auth' && to.name.indexOf('website') > -1) {
+        this.layout = 'default-layout';
+        // this.getLayout();
       }
+      console.log('tthis.layout', this.layout);
     },
   },
   methods: {
     getLayout() {
-      if (localStorage.getItem(STORAGE_NAME.TOKEN)) {
-        this.layout = 'default-layout';
-        // this.$router.push('/home');
-      } else {
+      console.log('this.$router', this.$router);
+      if (this.$router.currentRoute.name === 'auth') {
         this.layout = 'auth-layout';
-        console.log(this.$router);
-        if (this.$router.currentRoute.name !== 'auth') {
-          this.$router.push(`auth/login`);
-        }
+      }
+      if (this.$router.currentRoute.name === 'website') {
+        this.layout = 'default-layout';
       }
     },
   },
   created() {
     //TODO middleware check auth .....
-    this.getLayout();
+    // this.getLayout();
   },
 };
 </script>
