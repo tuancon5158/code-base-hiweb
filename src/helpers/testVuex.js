@@ -1,29 +1,123 @@
 import Vuex from 'vuex';
 
 class TestVuex {
-  constructor() {
+  constructor(callback, id) {
+    this.id = id;
+
     this.store = new Vuex.Store({
       state: {
-        count: 1,
+        ids: [],
         isSelectAll: false,
       },
       mutations: {
-        add(state, count) {
-          console.log('12');
-          state.count = state.count + 1;
+        /**
+         * Set ids
+         */
+        setIds(state, ids) {
+          state.ids = ids;
         },
-        sub(state, count) {
-          state.count = state.count - 1;
+
+        /**
+         * Push an id
+         *
+         * @return bool
+         */
+        pushId(state, id) {
+          if (state.ids.indexOf(id) === -1) {
+            state.ids.push(id);
+            return true;
+          }
+
+          return false;
+        },
+
+        /**
+         * Remove an id
+         *
+         * @return bool
+         */
+        removeId(state, id) {
+          if (state.ids.indexOf(id) === -1) {
+            return false;
+          }
+
+          state.ids.splice(state.ids.indexOf(id), 1);
+          return true;
+        },
+
+        /**
+         * Set select all
+         */
+        setSelectAll(state, bool) {
+          state.isSelectAll = bool ? true : false;
         },
       },
     });
+    // this.callback =
+    //   typeof callback === 'function'
+    //     ? callback
+    //     : data => {
+    //         console.log('Default selectable callback handler. Received: ' + JSON.stringify(data));
+    //       };
+    this.callback = function() {
+      console.log('callback');
+    };
   }
-  sub() {
-    this.store.commit('sub');
+  getIds() {
+    return this.store.state.ids;
   }
-  add() {
-    console.log(1212);
-    this.store.commit('add');
+  isSelected(id) {
+    return this.isSelectAll() || this.store.state.ids.indexOf(id) > -1 ? true : false;
+  }
+  isSelectAll() {
+    return this.store.state.isSelectAll;
+  }
+  select(id) {
+    if (this.store.state.ids.indexOf(id) === -1) {
+      this.store.commit('pushId', id);
+      console.log('this.store.state.ids', this.store.state.ids);
+    }
+  }
+  unselect(id, ignoreCallback) {
+    let idIndex = this.store.state.ids.indexOf(id);
+    if (idIndex > -1) {
+      this.store.commit('removeId', id);
+
+      // If ignore callback signal wasn't set
+      if (!ignoreCallback) {
+        this.callback(this.getData(), this.id);
+      }
+    }
+
+    // Unselect all too
+    if (this.isSelectAll()) {
+      this.unselectAll();
+    }
+  }
+
+  /**
+   * Select all
+   */
+  selectAll() {
+    this.store.commit('setSelectAll', true);
+    this.callback(this.getData(), this.id);
+  }
+
+  /**
+   * unselectAll
+   */
+  unselectAll() {
+    this.store.commit('setSelectAll', false);
+    this.store.commit('setIds', []);
+  }
+  getData() {
+    console.log(12, this.id);
+    return JSON.parse(
+      JSON.stringify({
+        ids: this.store.state.ids,
+        isSelectAll: this.store.state.isSelectAll,
+      }),
+    );
   }
 }
 export default TestVuex;
