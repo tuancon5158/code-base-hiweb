@@ -14,11 +14,13 @@
         <v-btn color="primary" @click.stop="drawer = !drawer">More filters </v-btn>
       </v-col>
       <v-col cols="12">
-        <Resource :columns="columns" />
+        <Resource :columns="columns" :callback="test" />
         <!-- <v-data-table :headers="headers" :items="desserts" :items-per-page="5" class="elevation-1"></v-data-table> -->
       </v-col>
       <!-- {{$.}} -->
     </v-row>
+    <button @click="cancel" class="btn btn-lg btn-white" type="reset">Cancel</button>
+
     <!-- <v-btn color="success" @click="test">text</v-btn> -->
     <FilterMoreDrawer :drawer="drawer" />
   </div>
@@ -103,7 +105,9 @@ export default {
   },
   created() {},
   methods: {
-    test() {},
+    test() {
+      console.log('tuanson');
+    },
   },
 };
 </script>

@@ -1,6 +1,7 @@
 <template>
   <v-row>
     <v-col cols="12">
+      <v-btn @click="callback">abc</v-btn>
       <ResourceTable :selectable="selectable" :columns="columns" />
     </v-col>
   </v-row>
@@ -17,6 +18,12 @@ export default {
       type: Object,
       default() {
         return {};
+      },
+    },
+    callback: {
+      type: Function,
+      default(id) {
+        console.log('1212');
       },
     },
   },
