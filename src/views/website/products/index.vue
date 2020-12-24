@@ -1,5 +1,7 @@
 <template>
   <div class="product-page">
+    <!-- <img :src="ai" alt="" srcset="" /> -->
+    <div :key="i.image" v-for="i in array">asdas<img :src="i.image" alt="" srcset="" /></div>
     <v-row>
       <v-col cols="12" class="d-flex justify-space-between">
         <span><h2>Products</h2></span>
@@ -19,7 +21,7 @@
       </v-col>
       <!-- {{$.}} -->
     </v-row>
-    <button @click="cancel" class="btn btn-lg btn-white" type="reset">Cancel</button>
+    <!-- <button @click="cancel" class="btn btn-lg btn-white" type="reset">Cancel</button> -->
 
     <!-- <v-btn color="success" @click="test">text</v-btn> -->
     <FilterMoreDrawer :drawer="drawer" />
@@ -28,11 +30,15 @@
 
 <script>
 import Resource from '@/components/Resources';
+// eslint-disable-next-line no-undef
+// var ai = require(`@/assets/images/logo.png`);
 
 export default {
   components: { Resource },
   data() {
     return {
+      // eslint-disable-next-line no-undef
+      array: [{ image: require('@/assets/images/logo.png') }],
       drawer: false,
       testVuex: null,
       columns: {
@@ -105,6 +111,11 @@ export default {
   },
   created() {},
   methods: {
+    getImage(item) {
+      console.log(item);
+      // eslint-disable-next-line no-undef
+      return require(item.image);
+    },
     test() {
       console.log('tuanson');
     },

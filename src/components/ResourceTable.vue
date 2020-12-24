@@ -1,6 +1,5 @@
 <template>
   <div class="resource-table">
-    <v-text-field></v-text-field>
     <table id="customers">
       <thead>
         <tr>
