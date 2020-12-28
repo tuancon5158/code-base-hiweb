@@ -1,11 +1,9 @@
-import moment from 'moment'
+import moment from 'moment';
 
 class DateTime {
-
-    format(dateTime, formatString) {
-        return moment(String(dateTime)).format(formatString)
-    }
-
+  format(dateTime, formatString) {
+    return moment(String(dateTime)).format(formatString);
+  }
 }
 
 export default new DateTime();

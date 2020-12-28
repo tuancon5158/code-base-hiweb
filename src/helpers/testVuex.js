@@ -53,12 +53,6 @@ class TestVuex {
         },
       },
     });
-    // this.callback =
-    //   typeof callback === 'function'
-    //     ? callback
-    //     : data => {
-    //         console.log('Default selectable callback handler. Received: ' + JSON.stringify(data));
-    //       };
     this.callback = function() {
       console.log('callback');
     };

@@ -20,4 +20,10 @@ export default [
     props: true,
     component: () => import('@/views/website/products/Update'),
   },
+  {
+    path: 'dattest',
+    name: 'website.products.dattest',
+    props: true,
+    component: () => import('@/views/website/test/DAT'),
+  },
 ];
