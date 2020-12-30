@@ -1,7 +1,6 @@
 <template>
   <div class="product-page">
     <!-- <img :src="ai" alt="" srcset="" /> -->
-    <div :key="i.image" v-for="i in array">asdas<img :src="i.image" alt="" srcset="" /></div>
     <v-row>
       <v-col cols="12" class="d-flex justify-space-between">
         <span><h2>Products</h2></span>
@@ -38,7 +37,7 @@ export default {
   data() {
     return {
       // eslint-disable-next-line no-undef
-      array: [{ image: require('@/assets/images/logo.png') }],
+      // array: [{ image: require('@/assets/images/logo.png') }],
       drawer: false,
       testVuex: null,
       columns: {
@@ -111,11 +110,6 @@ export default {
   },
   created() {},
   methods: {
-    getImage(item) {
-      console.log(item);
-      // eslint-disable-next-line no-undef
-      return require(item.image);
-    },
     test() {
       console.log('tuanson');
     },
