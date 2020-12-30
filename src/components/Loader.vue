@@ -46,6 +46,8 @@ export default {
 </script>
 
 <style lang="scss">
+@import '../assets/css/variables';
+
 .lds-ripple {
   display: inline-block;
   position: relative;
@@ -54,7 +56,7 @@ export default {
 }
 .lds-ripple div {
   position: absolute;
-  border: 4px solid #ccc;
+  border: 4px solid $loader-color;
   opacity: 1;
   border-radius: 50%;
   animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
@@ -89,7 +91,7 @@ export default {
   position: absolute;
   width: 6px;
   height: 6px;
-  background: #ccc;
+  background: $loader-color;
   border-radius: 50%;
   animation: lds-default 1.2s linear infinite;
 }
@@ -188,7 +190,7 @@ export default {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: #ccc;
+  background: $loader-color;
   margin: -4px 0 0 -4px;
 }
 .lds-roller div:nth-child(1) {
