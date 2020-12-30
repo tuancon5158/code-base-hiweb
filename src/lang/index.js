@@ -16,6 +16,7 @@ const messages = {
 };
 
 const i18n = new VueI18n({
+  silentTranslationWarn: true,
   locale: Cookies.get('language') || 'vi', // set locale
   messages, // set locale messages
 });

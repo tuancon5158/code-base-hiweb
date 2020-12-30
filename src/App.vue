@@ -25,7 +25,7 @@ export default {
   name: 'App',
   watch: {
     // eslint-disable-next-line prettier/prettier
-    $route: function (to, from) {
+    $route: function(to, from) {
       console.log(to, from);
       if (to.name && from.name === 'auth' && to.name.indexOf('website') > -1) {
         this.layout = 'default-layout';
