@@ -1,36 +1,40 @@
 <template>
-  <v-container fluid>
-    <v-combobox
-      v-model="$parent[model]"
-      hide-selected
-      hint="Maximum of 5 tags"
-      multiple
-      persistent-hint
-      small-chips
-      @input="inputChange"
-    >
-    </v-combobox>
-  </v-container>
+  <v-combobox
+    v-model.trim="$parent[model]"
+    hide-selected
+    :hint="hint"
+    :error-messages="error"
+    multiple
+    persistent-hint
+    small-chips
+    append-icon=""
+  ></v-combobox>
 </template>
 
 <script>
-import { required } from 'vuelidate/lib/validators';
-
 export default {
   props: {
     model: {
       type: String,
       default: '',
     },
-  },
-  methods: {
-    inputChange() {
-      console.log(this.$v);
+    error: {
+      type: String,
+      default: '',
+    },
+    hint: {
+      type: String,
+      default: '',
     },
   },
-  validations: {
-    model: {
-      required,
+  computed: {
+    inputVal: {
+      get() {
+        return this.$parent[this.model];
+      },
+      set(val) {
+        this.$parent[this.model] = val;
+      },
     },
   },
 };
