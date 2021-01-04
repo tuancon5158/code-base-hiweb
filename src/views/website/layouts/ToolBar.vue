@@ -58,8 +58,10 @@
           <input placeholder="Search" />
         </v-col>
         <v-spacer></v-spacer>
-        <span>
-          <!-- <h3>User</h3> -->
+        <span class="mr-4  align-center text-color--main pointer d-none d-sm-flex">
+          <i class="far fa-user mr-2"></i>
+          <h4 class="text-color--main">Seller 123</h4>
+          <i class="fas fa-caret-down ml-2"></i>
         </span>
       </v-row>
 

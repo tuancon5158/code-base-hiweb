@@ -1,14 +1,25 @@
 <template>
   <v-row>
+    <v-col cols="12" class="d-flex">
+      <div v-if="searchable" class="input-group input-group-flush input-group-merge" style="width:80%">
+        <v-text-field v-model="$parent.searchString" placeholder="Search" autocomplete="off" />
+      </div>
+      <template v-if="filterFields && filterFields.length">
+        <!-- Filter Button -->
+        <v-btn small outlined color="primary" @click="drawer = !drawer" class="btn btn-sm btn-secondary mt-2 ml-4">
+          Filter
+          <template v-if="filterData.length">({{ filterData.length }})</template>
+        </v-btn>
+      </template>
+      <!-- Filter Modal -->
+      <FilterMoreDrawer :drawer="drawer" />
+    </v-col>
     <v-col cols="12">
-      <button @click="test">asdsa</button>
-      <div
+      <!-- <div
         v-if="displayHeaderTable"
         id="tuancon"
         style="position: sticky; top: 63px; z-index: 5; height: 60px; background-color: red"
-      >
-        asdasdsa
-      </div>
+      ></div> -->
       <ResourceTable :selectable="selectable" :columns="columns" />
     </v-col>
   </v-row>
@@ -34,6 +45,27 @@ export default {
         console.log('1212');
       },
     },
+    searchable: {
+      default: false,
+    },
+    /**
+     * Filter fields
+     */
+    filterFields: {
+      type: Array,
+      default() {
+        return [];
+      },
+    },
+    /**
+     * Filter data
+     */
+    filterData: {
+      type: Array,
+      default() {
+        return [];
+      },
+    },
   },
 
   methods: {
@@ -48,6 +80,7 @@ export default {
   },
   data() {
     return {
+      drawer: null,
       selectable: null,
       displayHeaderTable: false,
     };
@@ -58,7 +91,7 @@ export default {
   created() {
     window.addEventListener('scroll', this.handleScroll);
 
-    this.selectable = new TestVuex((data) => {
+    this.selectable = new TestVuex(data => {
       this.$forceUpdate();
     });
   },

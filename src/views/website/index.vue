@@ -47,10 +47,12 @@ export default {
 
 <style lang="scss" scoped>
 .website-page {
-  background-color: #f9fbfd;
-  @include flex(center, flex-start);
+  background-color: $background-page;
+  @include flex(center, flex-center);
   height: 100%;
   & .website-container {
+    // max-width: 1024px;
+
     margin: 0.5rem 1rem;
     width: 100%;
     height: auto;

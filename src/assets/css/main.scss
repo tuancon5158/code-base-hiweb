@@ -12,6 +12,32 @@
 .pointer {
   cursor: pointer;
 }
-.page-list {
-  padding: 5px;
+.text-color--main {
+  color: $main-color;
+}
+
+//
+.page-header {
+  .page-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+}
+
+.page__table-container {
+  box-shadow: var(--p-card-shadow, 0 0 0 1px rgba(63, 63, 68, 0.05), 0 1px 3px 0 rgba(63, 63, 68, 0.15));
+  padding: 10px;
+  outline: 0.1rem solid transparent;
+  @include boderRadius();
+  .tab {
+    .v-tab:first-child {
+      margin-left: 0px !important;
+    }
+    .v-tab {
+      text-transform: none !important;
+    }
+  }
+}
+.pointer {
+  cursor: pointer;
 }
