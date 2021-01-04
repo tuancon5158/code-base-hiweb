@@ -8,7 +8,8 @@ import store from './store';
 import './assets/css/main.scss';
 import '@/plugins/components';
 import * as filters from '@/filters';
-
+import VuePapaParse from 'vue-papa-parse';
+Vue.use(VuePapaParse);
 Vue.config.productionTip = false;
 
 // jQuery

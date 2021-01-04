@@ -1,11 +1,16 @@
 <template>
-  <div style="width: 100%" class="d-flex justify-center">
+  <div class="d-flex justify-center auth-pages">
     <v-row no-gutters class="login-form">
-      <Login v-if="!authPage || authPage === 'login'" />
-      <Register v-if="authPage === 'register'" />
-      <Forgot v-if="authPage === 'forgot'" />
-      <!-- //shop && token -->
-      <Shop v-if="authPage === 'shop'" />
+      <v-col no-gutters cols="12" md="4" sm="12">
+        <Login v-if="!authPage || authPage === 'login'" />
+        <Register v-if="authPage === 'register'" />
+        <Forgot v-if="authPage === 'forgot'" />
+        <!-- //shop && token -->
+        <Shop v-if="authPage === 'shop'" />
+      </v-col>
+      <v-col cols="12" md="8" sm="12">
+        123
+      </v-col>
     </v-row>
   </div>
 </template>
@@ -27,6 +32,10 @@ export default {
 </script>
 
 <style lang="scss">
+.auth-pages {
+  width: 100%;
+  height: 100px;
+}
 .login-form {
   padding: 10rem 2rem;
   width: 350px;
