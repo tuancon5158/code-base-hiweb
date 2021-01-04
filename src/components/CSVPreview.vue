@@ -28,7 +28,7 @@ export default {
       count: 0,
       productCount: 0,
       csv: null,
-      resources: ['Title', 'Description', 'Type', 'Vendor', 'Body (Html)'],
+      resources: ['Title', 'Description', 'Type', 'Vendor', 'Body (Html)', 'Variant Sku', 'Variant Price'],
     };
   },
   created() {
