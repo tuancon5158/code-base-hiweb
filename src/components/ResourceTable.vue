@@ -1,24 +1,20 @@
 <template>
   <div class="resource-table">
     <table id="customers">
-      <thead>
+      <thead v-if="selectable.getIds().length === 0">
         <tr>
-          <th
-            style="position: sticky; top: 63px; z-index: 4"
-            v-for="(columnData, columnName) in columns"
-            :key="columnName"
-          >
+          <th v-for="(columnData, columnName) in columns" :key="columnName">
             <!-- <div>{{ selectable.getIds().length }}</div> -->
             <template v-if="!columnData.blankLabel">{{ columnName }}</template>
 
             <!-- Selectable -->
             <template v-if="columnData.kind === 'selectable'">
-              <div class="custom-control custom-checkbox table-checkbox">
+              <div class="custom-control custom-checkbox table-checkbox pointer">
                 <input
                   @change="selectable.isSelectAll() ? selectable.unselectAll() : selectable.selectAll()"
                   :checked="selectable.isSelectAll()"
                   type="checkbox"
-                  class="custom-control-input"
+                  class="custom-control-input pointer"
                   name="ordersSelect"
                   :id="selectableId"
                 />
@@ -30,10 +26,10 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(resource, k) in resources" :key="k">
+        <tr v-for="(resource, k) in document" :key="k">
           <td v-for="(column, kc) in columns" :key="kc">
             <template v-if="column.kind === 'selectable'">
-              <div class="custom-control custom-checkbox table-checkbox">
+              <div class="custom-control custom-checkbox table-checkbox pointer">
                 <input
                   @change="
                     selectable.isSelected(makeSelectId(resource))
@@ -42,12 +38,22 @@
                   "
                   :checked="selectable.isSelected(makeSelectId(resource))"
                   type="checkbox"
-                  class="custom-control-input"
+                  class="custom-control-input pointer"
                   name="ordersSelect"
                   :id="makeSelectId(resource)"
                 />
                 <label :for="makeSelectId(resource)" class="custom-control-label">&nbsp;</label>
               </div>
+            </template>
+            <template v-if="column.kind === 'image-title'">
+              <v-avatar size="40" color="red" class="text-center pointer">
+                <img
+                  src="
+                    https://cdn.substack.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2F096170e2-b2ab-43bb-8e30-a408161539c9_220x239.jpeg"
+                  alt=""
+                  srcset=""
+                />
+              </v-avatar>
             </template>
           </td>
         </tr>
@@ -59,6 +65,9 @@
 <script>
 export default {
   props: {
+    document: {
+      default: null,
+    },
     columns: {
       type: Object,
       default() {
@@ -75,28 +84,7 @@ export default {
   data() {
     return {
       selectableId: 'abcs',
-      resources: [
-        { id: '1' },
-        { id: '2' },
-        { id: '3' },
-        { id: '11' },
-        { id: '22' },
-        { id: '33' },
-        { id: '14' },
-        { id: '25' },
-        { id: '36' },
-        { id: '1' },
-        { id: '2' },
-        { id: '3' },
-        { id: '11' },
-        { id: '22' },
-        { id: '33' },
-        { id: '14' },
-        { id: '25' },
-        { id: '36' },
-        { id: '1' },
-        { id: '2' },
-      ],
+      resources: [],
     };
   },
   methods: {

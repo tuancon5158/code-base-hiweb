@@ -54,9 +54,9 @@
         <v-btn class="btn-show-toolbar" elevation="0" icon @click.stop="drawer = !drawer">
           <v-icon>fas fa-bars</v-icon>
         </v-btn>
-        <v-col cols="9" sm="8" class="d-flex align-center justify-center">
+        <!-- <v-col cols="9" sm="8" class="d-flex align-center justify-center">
           <input placeholder="Search" />
-        </v-col>
+        </v-col> -->
         <v-spacer></v-spacer>
         <span class="mr-4  align-center text-color--main pointer d-none d-sm-flex">
           <i class="far fa-user mr-2"></i>

@@ -54,7 +54,8 @@ class TestVuex {
       },
     });
     this.callback = function() {
-      console.log('callback');
+      this.store.commit('pushId', 'szdasdasd');
+      console.log();
     };
   }
   getIds() {
@@ -69,17 +70,17 @@ class TestVuex {
   select(id) {
     if (this.store.state.ids.indexOf(id) === -1) {
       this.store.commit('pushId', id);
-      console.log('this.store.state.ids', this.store.state.ids);
     }
   }
   unselect(id, ignoreCallback) {
     let idIndex = this.store.state.ids.indexOf(id);
+    console.log('idIndex', idIndex, id);
     if (idIndex > -1) {
       this.store.commit('removeId', id);
 
       // If ignore callback signal wasn't set
       if (!ignoreCallback) {
-        this.callback(this.getData(), this.id);
+        // this.callback(this.getData(), this.id);
       }
     }
 
