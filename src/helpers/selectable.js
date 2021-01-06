@@ -1,6 +1,6 @@
 import Vuex from 'vuex';
 
-class TestVuex {
+class Selectable {
   constructor(callback, id) {
     this.id = id;
 
@@ -115,4 +115,4 @@ class TestVuex {
     );
   }
 }
-export default TestVuex;
+export default Selectable;

@@ -7,9 +7,10 @@
         <Resource
           :document="document"
           :filter-fields="filter"
+          :filter-data="filterData"
+          :filter-callback="setFilterData"
           :searchable="searchableField"
           :columns="columns"
-          :callback="test"
         />
         <pagination :page.sync="page"></pagination>
       </v-col>

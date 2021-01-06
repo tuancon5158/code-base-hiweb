@@ -1,6 +1,6 @@
 <template>
   <div class="resource-table">
-    <table id="customers">
+    <table id="resources-table">
       <thead v-if="selectable.getIds().length === 0">
         <tr>
           <th v-for="(columnData, columnName) in columns" :key="columnName">
@@ -19,7 +19,7 @@
                   :id="selectableId"
                 />
 
-                <label class="custom-control-label" :for="selectableId">&nbsp;</label>
+                <label class="custom-control-label pointer" :for="selectableId">&nbsp;</label>
               </div>
             </template>
           </th>
@@ -54,6 +54,9 @@
                   srcset=""
                 />
               </v-avatar>
+            </template>
+            <template v-if="column.kind === 'text'">
+              <div>{{ resource.name }}</div>
             </template>
           </td>
         </tr>
@@ -107,31 +110,32 @@ export default {
     font-size: 18px;
   }
 }
-#customers {
+#resources-table {
   font-family: Arial, Helvetica, sans-serif;
   border-collapse: collapse;
   width: 100%;
 }
 
-#customers td,
-#customers th {
-  border: 1px solid #ddd;
-  padding: 8px;
+#resources-table td,
+#resources-table th {
+  border-bottom: 1px solid #ddd;
+  padding: 12px;
 }
 
-#customers tr:nth-child(even) {
+#resources-table tr:nth-child(even) {
   background-color: #f2f2f2;
 }
 
-#customers tr:hover {
-  background-color: #ddd;
+#resources-table tr:hover {
+  // background-color: #ddd;
 }
 
-#customers th {
+#resources-table th {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
-  background-color: $main-color;
-  color: white;
+  color: black;
+  // background-color: #dddddd;
+  // color: white;
 }
 </style>

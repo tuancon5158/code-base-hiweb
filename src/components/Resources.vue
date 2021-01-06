@@ -4,6 +4,7 @@
       <div v-if="searchable" class="input-group input-group-flush input-group-merge" style="width:80%">
         <v-text-field v-model="$parent.searchString" placeholder="Search" autocomplete="off" />
       </div>
+
       <template v-if="filterFields && filterFields.length">
         <!-- Filter Button -->
         <v-btn
@@ -19,12 +20,24 @@
         </v-btn>
       </template>
       <!-- Filter Modal -->
-      <FilterMoreDrawer :drawer="drawer" />
+      <FilterMoreDrawer
+        :drawer="drawer"
+        :fields="filterFields"
+        :filter="filterData"
+        :sync-filter-query="false"
+        :callback="setTmpFilterData"
+        :callbackDone="commitFilterData"
+      />
+    </v-col>
+    <v-col cols="12">
+      <pre>
+        {{ filterData }}
+      </pre>
     </v-col>
     <v-col cols="12" v-if="!$parent.isLoading">
       <!-- {{ selectable.getIds() }} -->
-      <div v-if="selectable.getIds().length > 0" class="mb-2 header-sticky">
-        <div class="custom-control custom-checkbox table-checkbox pointer">
+      <div v-if="selectable.getIds().length > 0" class="mb-2 resources-header--sticky elevation-1 d-flex align-center">
+        <div class="custom-control custom-checkbox table-checkbox pointer pb-2 ml-2">
           <input
             @change="selectable.isSelectAll() ? selectable.unselectAll() : selectable.selectAll()"
             :checked="selectable.isSelectAll()"
@@ -33,10 +46,18 @@
             name="ordersSelect"
             :id="selectableId"
           />
-
-          <label class="custom-control-label" :for="selectableId">&nbsp;</label>
+          <label
+            :class="
+              'pointer ' +
+                `${selectable.isSelectAll() ? 'custom-control-label' : 'custom-control-label custom-control-label-b'}`
+            "
+            :for="selectableId"
+            >&nbsp;</label
+          >
         </div>
+        <div>{{ 121 }}Selection</div>
       </div>
+      <v-divider v-if="selectable.getIds().length > 0"></v-divider>
       <ResourceTable :document="document" :selectable="selectable" :columns="columns" />
     </v-col>
     <v-col v-if="$parent.isLoading" cols="12" class="d-flex justify-center mt-8">
@@ -48,7 +69,7 @@
 
 <script>
 import ResourceTable from './ResourceTable';
-import TestVuex from '@/helpers/testVuex';
+import Selectable from '@/helpers/selectable';
 import $ from 'jquery';
 export default {
   props: {
@@ -86,16 +107,42 @@ export default {
         return [];
       },
     },
+
+    /**
+     * Filter data change callback
+     */
+    filterCallback: {
+      type: Function,
+      default(filterData) {
+        console.log('Default filter callback handler. Receieved ' + JSON.stringify(filterData));
+      },
+    },
+
+    /**
+     * Sorting callback
+     */
   },
 
   methods: {
-    test() {
-      console.log(this.$el.querySelector('#tuancon'), 'this.$el');
+    // when filter change
+    setTmpFilterData(filterData) {
+      this.tmpFilterData = filterData;
     },
     handleScroll(event) {
-      console.log('event', window.scrollY, window.scrollX);
       this.displayHeaderTable = window.scrollY > 220 ? true : false;
       // Any code to be executed when the window is scrolled
+    },
+    commitFilterData() {
+      this.filterCallback(this.tmpFilterData);
+
+      let query = JSON.parse(JSON.stringify(this.$route.query));
+      let newQuery = JSON.stringify(this.tmpFilterData);
+      if (query._query !== newQuery) {
+        query._query = newQuery;
+        this.$router.replace({
+          query,
+        });
+      }
     },
   },
   data() {
@@ -104,6 +151,7 @@ export default {
       drawer: null,
       selectable: null,
       displayHeaderTable: false,
+      tmpFilterData: [],
     };
   },
   components: {
@@ -112,24 +160,24 @@ export default {
   created() {
     window.addEventListener('scroll', this.handleScroll);
 
-    this.selectable = new TestVuex(data => {
+    this.selectable = new Selectable(data => {
       this.$forceUpdate();
     });
   },
 };
 </script>
 <style lang="scss">
-.header-sticky {
-  width: 350px;
-  height: 40px;
+.resources-header--sticky {
+  // width: 350px;
+  height: 50px;
   position: sticky;
-  top: 63px;
+  top: 67px;
   z-index: 4;
   background: hsla(0, 0%, 100%, 0.96);
-  border-radius: 12px 12px 12px 12px;
-  box-shadow: 0 8px 24px 0 rgba(54, 62, 67, 0.1), 0 16px 40px 0 rgba(54, 62, 67, 0.1);
-  .v-card {
-    height: 100%;
-  }
+  // border-radius: 12px 12px 12px 12px;
+  // box-shadow: 0 8px 24px 0 rgba(54, 62, 67, 0.1), 0 16px 40px 0 rgba(54, 62, 67, 0.1);
+  // .v-card {
+  //   height: 100%;
+  // }
 }
 </style>

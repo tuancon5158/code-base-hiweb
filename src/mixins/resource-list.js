@@ -36,7 +36,8 @@ export default {
 
   created() {
     // Set current page
-    this.page = parseInt(this.$route.query.page ? this.$route.query.page : '1');
+    this.page = this.$route.query.page ? parseInt(this.$route.query.page) : 1;
+    console.log(this.$route.query.page, this.page);
   },
 
   mounted() {
@@ -112,7 +113,7 @@ export default {
       this.searchString = '';
 
       // Set current page
-      this.page = parseInt(this.$route.query.page);
+      this.page = this.$route.query.page ? parseInt(this.$route.query.page) : 1;
       if (!this.page) {
         this.firstPage = '';
       }

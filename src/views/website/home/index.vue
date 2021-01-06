@@ -2,7 +2,6 @@
   <v-container fluid>
     <v-sparkline
       :fill="fill"
-      :gradient="gradient"
       :line-width="width"
       :padding="padding"
       :smooth="radius || false"

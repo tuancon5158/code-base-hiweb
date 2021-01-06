@@ -12,30 +12,98 @@
     app
   >
     <div class="pl-2 label-filter d-flex align-center">
-      <span>More filters</span>
+      <span>Filters</span>
     </div>
     <div class="filter-list">
       <v-row justify="center">
         <v-expansion-panels multiple>
           <v-expansion-panel v-for="(item, i) in 5" :key="i">
             <v-expansion-panel-header>Item</v-expansion-panel-header>
-            <v-expansion-panel-content>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-              dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-              ea commodo consequat.
-            </v-expansion-panel-content>
+            <v-btn color="success" @click="addCondition(item)">
+              addCondition
+            </v-btn>
           </v-expansion-panel>
         </v-expansion-panels>
       </v-row>
+    </div>
+    <div>
+      <v-btn color="success" @click="doneSelectFilter">Done</v-btn>
     </div>
   </v-navigation-drawer>
 </template>
 
 <script>
 export default {
-  props: ['drawer'],
+  props: {
+    drawer: {
+      type: Boolean,
+      default: false,
+    },
+
+    /**
+     * Fields
+     */
+    fields: {
+      type: Array,
+      default() {
+        return [
+          {
+            label: 'Example Text',
+            field: 'example-text',
+            operators: ['='],
+          },
+          {
+            label: 'Example Select',
+            field: 'example-select',
+            operators: ['=', '!=', '>', '<', '>=', '<='],
+            options: {
+              key: 'Value',
+            },
+          },
+        ];
+      },
+    },
+
+    /**
+     * Preset filter data
+     */
+    filter: {
+      default: null,
+    },
+
+    /**
+     * Callback
+     */
+    callback: {
+      type: Function,
+      default(filterData) {
+        console.log('Default filter data handler. ' + JSON.stringify(filterData));
+      },
+    },
+    callbackDone: {
+      type: Function,
+      default(filterData) {
+        console.log('Default filter data handler. ' + JSON.stringify(filterData));
+      },
+    },
+  },
   data() {
-    return {};
+    return {
+      filterData: [],
+    };
+  },
+  methods: {
+    addCondition(i) {
+      this.filterData.push({
+        field: i,
+        value: `v${i}`,
+      });
+      this.callback(this.filterData);
+    },
+    doneSelectFilter() {
+      this.callbackDone();
+      console.log('callbackDone in Filter Component');
+    },
   },
 };
 </script>
@@ -49,7 +117,7 @@ export default {
     z-index: 2;
     width: 100%;
     overflow: hidden;
-    height: $height-header-main;
+    height: $height-header-main + 5;
     border-bottom: 1px solid $border-color;
     background: white;
   }
