@@ -1,7 +1,17 @@
 <template>
   <div>
     <notification type="error" />
-    <tags-field model="text" />{{ text }}
+    <tags-field
+      :error="
+        !$v.text.required
+          ? 'Field is required'
+          : !$v.text.minLength
+          ? 'Field must have at least ' + $v.text.$params.minLength.min + ' characters.'
+          : ''
+      "
+      model="text"
+    />
+    <v-btn @click="modalTest2 = true">Click</v-btn>
     <LineChar :chartdata="dataCharts.line.chartdata" :options="dataCharts.line.options" />
     <Bar :chartdata="dataCharts.bar.chartdata" :options="dataCharts.bar.options" />
     <Doughnut :chartdata="dataCharts.doughnut.chartdata" :options="dataCharts.doughnut.options" />
@@ -11,14 +21,31 @@
     <Loader />
     <v-text-field></v-text-field>
     <DatePickers model="date" :range="true" />
+    <CSVPreview v-if="file" :file="file" />
     <FileUploader v-on:callback="onFileUploaded" />
     <images-uploader />
+    <modal model="modalTest" title="Test" :callback="submit">
+      <template v-slot:content>
+        <div>
+          123
+        </div>
+      </template>
+    </modal>
+    <modal model="modalTest2" title="Test" :callback="submit">
+      <template v-slot:content>
+        <div>
+          465
+        </div>
+      </template>
+    </modal>
   </div>
 </template>
 
 <script>
 import SkeletonLoaders from '@/components/SkeletonLoaders';
 import Loader from '@/components/Loader';
+import Modal from '@/components/Modal';
+import CSVPreview from '@/components/CSVPreview';
 import DatePickers from '@/components/form/DatePickers';
 import FileUploader from '@/components/form/FileUploader';
 import ImagesUploader from '@/components/form//ImagesUploader';
@@ -29,6 +56,7 @@ import Doughnut from '@/components/chart/Doughnut';
 import Pie from '@/components/chart/Pie';
 import Scatter from '@/components/chart/Scatter';
 import TagsField from '@/components/form/TagsField';
+import { required, minLength, between } from 'vuelidate/lib/validators';
 
 export default {
   components: {
@@ -44,6 +72,8 @@ export default {
     Pie,
     Scatter,
     TagsField,
+    Modal,
+    CSVPreview,
   },
   data() {
     return {
@@ -274,11 +304,24 @@ export default {
         },
       },
       text: '',
+      modalTest: false,
+      modalTest2: false,
+      file: null,
     };
+  },
+  validations: {
+    text: {
+      required,
+      minLength: minLength(4),
+    },
   },
   methods: {
     onFileUploaded(fileResources) {
-      console.log(fileResources);
+      this.file = fileResources.file;
+      console.log(this.file);
+    },
+    submit() {
+      console.log(123);
     },
   },
 };

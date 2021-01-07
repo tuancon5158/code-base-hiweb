@@ -3,12 +3,12 @@ const Cookie = require('js-cookie');
 import store from '../store';
 import axios from 'axios';
 import STORAGE_NAME from '@/const/storage';
-import { HOST } from '@/api/domain';
+// import { HOST } from '@/api/domain';
 let service;
 const api = {
   init() {
     service = axios.create({ baseURL: 'process.....' });
-    this.initAccessTokenClient();
+    // this.initAccessTokenClient();
     service.interceptors.response.use(this.handleSuccess, this.handleError);
   },
   handleSuccess(response) {
