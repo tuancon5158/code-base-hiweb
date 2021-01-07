@@ -16,6 +16,7 @@
     </div>
     <div class="filter-list">
       <v-row justify="center">
+        {{ filterData }}
         <v-expansion-panels multiple>
           <v-expansion-panel v-for="(item, i) in 5" :key="i">
             <v-expansion-panel-header>Item</v-expansion-panel-header>
@@ -96,7 +97,7 @@ export default {
     addCondition(i) {
       this.filterData.push({
         field: i,
-        value: `v${i}`,
+        value: `Filter${i}`,
       });
       this.callback(this.filterData);
     },

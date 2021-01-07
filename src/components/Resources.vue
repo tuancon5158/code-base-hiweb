@@ -30,9 +30,12 @@
       />
     </v-col>
     <v-col cols="12">
-      <pre>
-        {{ filterData }}
-      </pre>
+      <v-chip v-for="(i, k) in filterData" @click:close="removeFilterData(k)" :key="i.field" class="ma-2" close>
+        {{ i.value }}
+      </v-chip>
+    </v-col>
+    <v-col cols="12">
+      <v-divider></v-divider>
     </v-col>
     <v-col cols="12" v-if="!$parent.isLoading">
       <!-- {{ selectable.getIds() }} -->
@@ -122,8 +125,26 @@ export default {
      * Sorting callback
      */
   },
-
+  components: {
+    ResourceTable,
+  },
+  data() {
+    return {
+      listFilter: [],
+      selectableId: 'abcsse',
+      drawer: null,
+      selectable: null,
+      displayHeaderTable: false,
+      tmpFilterData: [],
+    };
+  },
   methods: {
+    removeFilterData(k) {
+      this.tmpFilterData.splice(k, 1);
+      // this.setTmpFilterData(this.tmpFilterData);
+      // this.tmpFilterData = this.tmpFilterData.map(it => it).splice(k, 1);
+      this.commitFilterData();
+    },
     // when filter change
     setTmpFilterData(filterData) {
       this.tmpFilterData = filterData;
@@ -133,7 +154,7 @@ export default {
       // Any code to be executed when the window is scrolled
     },
     commitFilterData() {
-      this.filterCallback(this.tmpFilterData);
+      this.filterCallback([...this.tmpFilterData]);
 
       let query = JSON.parse(JSON.stringify(this.$route.query));
       let newQuery = JSON.stringify(this.tmpFilterData);
@@ -145,18 +166,7 @@ export default {
       }
     },
   },
-  data() {
-    return {
-      selectableId: 'abcsse',
-      drawer: null,
-      selectable: null,
-      displayHeaderTable: false,
-      tmpFilterData: [],
-    };
-  },
-  components: {
-    ResourceTable,
-  },
+
   created() {
     window.addEventListener('scroll', this.handleScroll);
 

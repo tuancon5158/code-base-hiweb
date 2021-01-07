@@ -1,12 +1,12 @@
 const menu = [
   {
     title: 'Home',
-    icon: 'mdi-folder',
+    icon: 'fas fa-home',
     path: '/w/abc.hiwebio/',
   },
   {
     title: 'Products',
-    icon: 'mdi-folder',
+    icon: 'fas fa-tags',
     path: '/w/abc.hiwebio/products',
     children: [
       {
