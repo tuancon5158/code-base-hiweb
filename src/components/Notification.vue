@@ -1,6 +1,8 @@
 <template>
   <v-alert v-show="show" text transition="slide-x-transition" border="left" dense :type="type">
-    {{ message }}
+    <ul>
+      <li v-for="(message, key) in messages" :key="key">{{ message }}</li>
+    </ul>
   </v-alert>
 </template>
 
@@ -15,14 +17,14 @@ export default {
       default: 'info',
     },
     // Message
-    message: {
-      type: String,
-      default: 'Message',
+    messages: {
+      type: Array,
+      default: null,
     },
     // times
     times: {
       type: Number,
-      default: 3000,
+      default: 10000000,
     },
   },
   data() {
