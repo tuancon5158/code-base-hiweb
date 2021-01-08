@@ -54,26 +54,15 @@ export default {
     chooseFile() {
       var validExts = ['.xlsx', '.xls', '.csv'];
       this.errors = [];
-      if (this.multiple && this.files) {
+      if (this.files) {
         this.files.forEach(file => {
           if (file.size > this.maxSize) {
-            this.files = null;
-            this.errors.push('file ' + file.name + ' larger than 1mb');
+            this.errors.push('file ' + file.name + ' larger than ' + this.maxSize / (1024 * 1024) + 'mb');
           }
           if (file.type != 'text/csv' && file.type != 'application/vnd.ms-excel') {
-            this.files = null;
             this.errors.push('File ' + file.name + ' type must be .csv');
           }
         });
-      } else {
-        if (this.files && this.files.size > this.maxSize) {
-          this.files = null;
-          this.errors.push('File ' + this.files.name + ' larger than 1mb');
-        }
-        if (this.files && this.files.type != 'text/csv' && this.files.type != 'application/vnd.ms-excel') {
-          this.files = null;
-          this.errors.push('File ' + this.files.name + ' type must be .csv');
-        }
       }
       let fileResources = {};
       fileResources.file = this.files;
