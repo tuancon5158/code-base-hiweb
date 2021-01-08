@@ -11,7 +11,6 @@
         @change="selectedFiles"
         class="file-input"
         :multiple="multiple"
-        label="File input"
         :accept="accept"
       ></v-file-input>
     </div>
@@ -21,7 +20,6 @@
         v-model="files"
         @change="selectedFiles"
         :multiple="multiple"
-        label="File input"
         :accept="accept"
       ></v-file-input>
     </div>
