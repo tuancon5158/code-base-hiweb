@@ -8,7 +8,7 @@
       <v-file-input
         ref="file"
         v-model="files"
-        @change="chooseFile"
+        @change="selectedFiles"
         class="file-input"
         :multiple="multiple"
         label="File input"
@@ -19,7 +19,7 @@
       <v-file-input
         ref="file"
         v-model="files"
-        @change="chooseFile"
+        @change="selectedFiles"
         :multiple="multiple"
         label="File input"
         :accept="accept"
@@ -56,7 +56,7 @@ export default {
     };
   },
   methods: {
-    chooseFile() {
+    selectedFiles() {
       this.errors = [];
       if (this.files) {
         this.files.forEach(file => {
