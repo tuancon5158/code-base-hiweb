@@ -11,6 +11,15 @@
     border: 0.01px solid $border-color;
     border-radius: 8px !important;
     color: $input-color;
+    .v-text-field__prefix {
+      padding-left: 4px;
+      font-weight: bold;
+      // background-color: black;
+    }
+    .v-text-field__suffix {
+      padding-right: 4px;
+      font-weight: bold;
+    }
   }
 }
 .v-input.v-input--is-focused:not(.v-input--checkbox):not(.v-input--radio-group--column):not(.v-input--switch):not(.v-input__slider) {

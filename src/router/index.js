@@ -5,6 +5,7 @@ const Home = () => import(/* webpackChunkName: "" */ '@/views/home');
 const Website = () => import(/* webpackChunkName: "" */ '@/views/website');
 const Page404 = () => import(/* webpackChunkName: "" */ '@/views/404');
 const PageAuth = () => import(/* webpackChunkName: "" */ '@/views/auth');
+const Survey = () => import(/* webpackChunkName: "" */ '@/views/auth/components/Survey');
 
 Vue.use(VueRouter);
 
@@ -28,6 +29,13 @@ export default new VueRouter({
       name: 'auth',
       props: true,
       component: PageAuth,
+    },
+
+    {
+      path: '/shop/add/survey',
+      name: 'auth/survey',
+      props: true,
+      component: Survey,
     },
 
     { path: '/404', component: Page404 },

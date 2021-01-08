@@ -1,6 +1,6 @@
 <template>
   <v-col cols="12" sm="8">
-    <h1 class="d-none d-sm-flex">Select a shop</h1>
+    <h2 class="d-none d-sm-flex mb-3">Select a shop</h2>
     <div class="select-shop-page">
       <v-card @click="$router.push('/w/abc.hiwebio/')" class="mx-auto d-flex align-center" tile>
         <div class="pa-4">
@@ -43,8 +43,6 @@ export default {
   margin-top: 5px;
 }
 .label-forgot span {
-  font-size: 1.3rem;
-  color: $main-color;
   cursor: pointer;
 }
 @media only screen and (max-width: 600px) {
