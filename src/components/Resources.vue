@@ -158,10 +158,17 @@ export default {
 
       let query = JSON.parse(JSON.stringify(this.$route.query));
       let newQuery = JSON.stringify(this.tmpFilterData);
+      console.log('query._query ', newQuery);
       if (query._query !== newQuery) {
         query._query = newQuery;
         this.$router.replace({
           query,
+        });
+      }
+      if (this.tmpFilterData.length === 0) {
+        this.$router.replace({
+          ...query,
+          _query: '',
         });
       }
     },

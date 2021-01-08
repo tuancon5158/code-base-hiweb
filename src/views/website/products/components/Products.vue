@@ -1,6 +1,6 @@
 <template>
   <div class="page-products__products">
-    <v-row no-gutters class="evalution-form mt-2 page__table-container">
+    <v-row no-gutters class="elevation-2 mt-2 page__table-container">
       <HeaderTableTabs :currentTab.sync="currentTab" :tabs="tabs" />
 
       <v-col cols="12">

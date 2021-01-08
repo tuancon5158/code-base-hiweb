@@ -78,6 +78,7 @@ export default {
      * Set filter data
      */
     setFilterData(filterData) {
+      console.log(filterData, 'filterData');
       this.filterData = filterData;
     },
 
