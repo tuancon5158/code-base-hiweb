@@ -9,13 +9,13 @@
       min-width="290px"
     >
       <template v-slot:activator="{ on, attrs }">
-        <v-text-field v-model="dateText" readonly v-bind="attrs" v-on="on">
+        <v-text-field hide-details v-model="dateText" readonly v-bind="attrs" v-on="on">
           <template v-if="showIcon" slot="prepend">
             <v-icon>mdi-calendar</v-icon>
           </template>
         </v-text-field>
       </template>
-      <v-date-picker :hint="format" v-model="date" :range="range" @input="pickedDate()"></v-date-picker>
+      <v-date-picker v-model="date" :range="range" @input="pickedDate()"></v-date-picker>
     </v-menu>
   </div>
 </template>
@@ -38,24 +38,33 @@ export default {
       type: Boolean,
       default: false,
     },
-    // Model string from parent
-    model: {
-      type: String,
-      default: '',
+    dates: {
+      type: [String, Array],
+      default: null,
     },
     // Show icon text field
     showIcon: {
       type: Boolean,
       default: false,
     },
+    /**
+     * Callback
+     */
+    callback: {
+      type: Function,
+      default(dates) {},
+    },
   },
   data() {
     return {
-      date: [],
+      date: null,
       menu: false,
       modal: false,
       menu2: false,
     };
+  },
+  created() {
+    this.date = this.dates;
   },
   methods: {
     /**
@@ -63,12 +72,12 @@ export default {
      */
     pickedDate() {
       this.menu2 = false;
-      this.$parent[this.model] = this.date;
+      this.callback(this.date);
     },
   },
   computed: {
     dateText: function() {
-      return this.range ? this.date.join(' ~ ') : this.date;
+      return this.range && this.date && Array.isArray(this.date) ? this.date.join(' ~ ') : this.date;
     },
   },
 };
