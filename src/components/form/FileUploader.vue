@@ -12,7 +12,7 @@
         class="file-input"
         :multiple="multiple"
         label="File input"
-        accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+        :accept="accept"
       ></v-file-input>
     </div>
     <div v-else>
@@ -22,7 +22,7 @@
         @change="chooseFile"
         :multiple="multiple"
         label="File input"
-        accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+        :accept="accept"
       ></v-file-input>
     </div>
   </div>
@@ -43,28 +43,35 @@ export default {
       type: Number,
       default: 1024 * 1024,
     },
+    accept: {
+      type: String,
+      default: '.csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel',
+    },
   },
   data() {
     return {
       files: [],
       errors: [],
+      types: ['text/csv', 'application/vnd.ms-excel', 'text/plain'],
     };
   },
   methods: {
     chooseFile() {
-      var validExts = ['.xlsx', '.xls', '.csv'];
       this.errors = [];
       if (this.files) {
         this.files.forEach(file => {
           if (file.size > this.maxSize) {
-            this.errors.push('file ' + file.name + ' larger than ' + this.maxSize / (1024 * 1024) + 'mb');
+            this.errors.push('File ' + file.name + ' larger than ' + this.maxSize / (1024 * 1024) + 'mb.');
           }
-          if (file.type != 'text/csv' && file.type != 'application/vnd.ms-excel') {
-            this.errors.push('File ' + file.name + ' type must be .csv');
+          if (!this.types.includes(file.type)) {
+            this.errors.push('Invalid file type.');
           }
         });
       }
       let fileResources = {};
+      if (this.errors.length > 0) {
+        this.files = null;
+      }
       fileResources.file = this.files;
       fileResources.errors = this.errors;
       this.$emit('callback', fileResources);
