@@ -19,30 +19,7 @@
 
     <!-- Menu item tree -->
     <div class="mt-5 menu-items">
-      <Tree
-        v-if="menu.items && menu.items.length > 0"
-        :data="menu.items"
-        draggable="draggable"
-        cross-tree="cross-tree"
-        @change="onChange"
-      >
-        <div slot-scope="{ data }">
-          <template v-if="!data.isDragPlaceHolder">
-            <div class="d-flex align-center py-2">
-              <div class="mr-3">
-                <v-icon>fas fa-grip-vertical</v-icon>
-              </div>
-              <div>{{ data.name }}</div>
-              <div class="ml-auto">
-                <v-btn @click="onShowEdit(data)" class="mr-2">Edit</v-btn>
-                <v-btn @click="onShowCreate(data)" class="mr-2">Add menu item</v-btn>
-                <v-btn @click="onDeleteNote(data)"><v-icon>far fa-trash-alt</v-icon></v-btn>
-              </div>
-            </div>
-          </template>
-        </div>
-      </Tree>
-
+      <items v-if="menu.items && menu.items.length > 0" :items="menu.items" />
       <p v-else class="text-center mt-5">This menu doesn't have any items</p>
     </div>
 
@@ -77,15 +54,15 @@
 <script>
 import { required, minLength, maxLength, email, helpers, decimal } from 'vuelidate/lib/validators';
 import modal from '@/components/Modal';
-import { DraggableTree } from 'vue-draggable-nested-tree';
 import Redirect from '@/components/RedirectTo';
+import Items from './components/Items';
 
 export default {
   display: 'Nested',
   components: {
     modal,
-    Tree: DraggableTree,
     Redirect,
+    Items,
   },
   data() {
     return {
@@ -134,7 +111,17 @@ export default {
         updated_at: '2021-01-04T02:49:29+00:00',
         items: [
           {
-            children: [],
+            children: [
+              {
+                id: 1535661,
+                menu_id: 322404,
+                name: 'Man',
+                parent_id: null,
+                position: 0,
+                type: 'collections',
+                link: '123',
+              },
+            ],
             id: 1535661,
             menu_id: 322404,
             name: 'Man',
@@ -266,7 +253,7 @@ export default {
       this.isLoading = true;
       this.invalidSubmit = this.$v.menu.title.$invalid;
       if (!this.invalidSubmit) {
-        console.log('submit');
+        console.log(this.menu.items);
       }
       this.isLoading = false;
     },

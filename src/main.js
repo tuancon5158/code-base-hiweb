@@ -9,9 +9,7 @@ import './assets/css/main.scss';
 import '@/plugins/components';
 import * as filters from '@/filters';
 import VuePapaParse from 'vue-papa-parse';
-import VueTreeList from 'vue-tree-list';
 
-Vue.use(VueTreeList);
 Vue.use(VuePapaParse);
 Vue.config.productionTip = false;
 
