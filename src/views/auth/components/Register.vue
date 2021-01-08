@@ -124,6 +124,7 @@ export default {
       this.invalid = this.$v.$invalid;
       setTimeout(() => {
         this.isLoading = false;
+        this.$router.push({ name: 'auth/survey' });
       }, 2000);
     },
   },
