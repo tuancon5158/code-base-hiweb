@@ -9,7 +9,9 @@
         <v-btn outlined color="primary"><i class="fas fa-file-export"></i>{{ $t('Export') }} </v-btn>
         <v-btn outlined class="ml-2" color="primary"><i class="fas fa-download"></i>{{ $t('Import') }} </v-btn>
         <v-spacer></v-spacer>
-        <v-btn color="primary"><i class="fas fa-plus"></i>{{ $t('Add product') }}</v-btn>
+        <v-btn color="primary" @click="$router.push({ name: 'website.products.create' })"
+          ><i class="fas fa-plus"></i>{{ $t('Add product') }}</v-btn
+        >
       </v-col>
     </v-row>
     <Products />

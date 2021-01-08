@@ -51,8 +51,7 @@ export default {
   @include flex(center, flex-center);
   height: 100%;
   & .website-container {
-    // max-width: 1024px;
-
+    max-width: 1024px;
     margin: 0.5rem 1rem;
     width: 100%;
     height: auto;
