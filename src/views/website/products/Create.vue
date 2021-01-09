@@ -23,6 +23,12 @@
           <div class="elevation-form mt-4 pa-3">
             <Inventory />
           </div>
+          <div class="elevation-form pa-3 mt-4">
+            <Shipping />
+          </div>
+          <div class="elevation-form pa-3 mt-4">
+            <Variants />
+          </div>
         </v-col>
         <v-col cols="4" class="d-flex flex-column">
           <div class="elevation-form pa-3">
@@ -45,6 +51,8 @@ import ProductAvailability from '@/views/website/products/components/ProductAvai
 import Organization from '@/views/website/products/components/Organization';
 import Pricing from '@/views/website/products/components/Pricing';
 import Inventory from '@/views/website/products/components/Inventory';
+import Shipping from '@/views/website/products/components/Shipping';
+import Variants from '@/views/website/products/components/Variants';
 
 export default {
   components: {
@@ -55,6 +63,8 @@ export default {
     Organization,
     Pricing,
     Inventory,
+    Shipping,
+    Variants,
   },
   data() {
     return {};

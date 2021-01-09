@@ -5,7 +5,7 @@
     </label>
     <div>
       <label class="d-flex fz-13">Lable</label>
-      <v-text-field aria-autocomplete="off"></v-text-field>
+      <v-text-field id="email" autocomplete="new-password"></v-text-field>
     </div>
     <div>
       <label class="d-flex fz-13">Vendor</label>
