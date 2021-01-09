@@ -303,7 +303,7 @@ export default {
           },
         },
       },
-      text: '',
+      text: [1, 2, 3],
       modalTest: false,
       modalTest2: false,
       file: null,
