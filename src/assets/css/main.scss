@@ -2,7 +2,7 @@
 @import './normalize.scss';
 @import './checkbox.scss';
 @import './input.scss';
-
+@import './transition.scss';
 @import './button.scss';
 
 .label-form {
@@ -59,7 +59,7 @@
       text-decoration: none !important;
     }
   }
-  .link-add-image {
+  .link-add {
     font-size: 14px;
     font-family: Arial, sans-serif;
     line-height: 20px;

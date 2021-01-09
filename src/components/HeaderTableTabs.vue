@@ -1,6 +1,6 @@
 <template>
   <v-col cols="12" class="tab">
-    <v-tabs @change="changeTab" align-with-title background-color="navi">
+    <v-tabs @change="changeTab" align-with-title background-color="white">
       <v-tab class="text-lowercase" v-for="item in tabs" :key="item.key">
         {{ item.name }}
       </v-tab>

@@ -74,3 +74,8 @@ export default {
   },
 };
 </script>
+<style lang="scss">
+.page-products__products {
+  background: white;
+}
+</style>
