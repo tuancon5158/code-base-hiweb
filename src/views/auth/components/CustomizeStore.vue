@@ -84,7 +84,7 @@
 </template>
 
 <script>
-import api from '../../../api';
+import { authService } from '@/apis/auth.s';
 import { required, minLength, maxLength, email, helpers, decimal } from 'vuelidate/lib/validators';
 
 export default {
@@ -124,10 +124,7 @@ export default {
   },
   methods: {
     async getWebFonts() {
-      let data = await api.get(
-        'https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyB9NPXKIWWV1fiEyswYduuOA6Ng9t14VNA',
-        {},
-      );
+      let data = await authService.login('tuan', 'con');
       this.fonts = data.data.items;
     },
     selectFont() {
