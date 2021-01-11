@@ -13,7 +13,9 @@
         </div>
 
         <!-- Content -->
-        <slot name="content"></slot>
+        <v-card-text>
+          <slot name="content"></slot>
+        </v-card-text>
 
         <v-divider></v-divider>
 
@@ -114,7 +116,6 @@ export default {
      fnc submit and close
     */
     submit() {
-      this.$parent[this.model] = false;
       this.callback(this.$el);
     },
   },
