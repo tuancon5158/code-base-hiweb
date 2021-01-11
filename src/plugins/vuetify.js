@@ -20,6 +20,7 @@ const opts = {
         warning: '#FFC107',
         anchor: '#1C3E3F',
         navi: '#f9fbfd',
+        backgroundPage: '#f9fbfd',
       },
       dark: {
         primary: 'red',

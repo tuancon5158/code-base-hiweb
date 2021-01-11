@@ -18,7 +18,9 @@
             exact
           >
             <template v-slot:activator>
-              <v-list-item-icon> </v-list-item-icon>
+              <v-list-item-icon>
+                <v-icon size="small">{{ item.icon }}</v-icon>
+              </v-list-item-icon>
               <v-list-item-content>
                 <v-list-item-title v-text="$t(item.title)"></v-list-item-title>
               </v-list-item-content>
@@ -32,13 +34,15 @@
               :to="{ path: child.path }"
               class
             >
-              <v-list-item-content>
-                <v-list-item-title v-text="$t(child.title)"></v-list-item-title>
+              <v-list-item-content class="ml-3">
+                <v-list-item-title class="" v-text="$t(child.title)"></v-list-item-title>
               </v-list-item-content>
             </v-list-item>
           </v-list-group>
           <v-list-item exact active-class="siderbar-active" v-else :to="{ path: item.path }">
-            <v-list-item-icon> </v-list-item-icon>
+            <v-list-item-icon>
+              <v-icon size="small">{{ item.icon }}</v-icon></v-list-item-icon
+            >
             <v-list-item-content>
               <v-list-item-title v-text="item.title"></v-list-item-title>
             </v-list-item-content>
@@ -54,12 +58,14 @@
         <v-btn class="btn-show-toolbar" elevation="0" icon @click.stop="drawer = !drawer">
           <v-icon>fas fa-bars</v-icon>
         </v-btn>
-        <v-col cols="9" sm="8" class="d-flex align-center justify-center">
+        <!-- <v-col cols="9" sm="8" class="d-flex align-center justify-center">
           <input placeholder="Search" />
-        </v-col>
+        </v-col> -->
         <v-spacer></v-spacer>
-        <span>
-          <!-- <h3>User</h3> -->
+        <span class="mr-4  align-center text-color--main pointer d-none d-sm-flex">
+          <i class="far fa-user mr-2"></i>
+          <h4 class="text-color--main">Seller 123</h4>
+          <i class="fas fa-caret-down ml-2"></i>
         </span>
       </v-row>
 
@@ -88,7 +94,7 @@ export default {
 .toolbar-page {
   .v-list {
     .v-list-item__title {
-      font-size: 12px !important;
+      font-size: 12px;
     }
   }
   .v-list--nav {
@@ -98,13 +104,20 @@ export default {
     // background: #fffd;
     opacity: 0.7;
     // background: $main-color;
-    border-left: 5px solid $main-color;
+    border-left: 2px solid $main-color;
     .v-list-item__title {
       color: $main-color;
       font-weight: bold;
       font-size: 12px !important;
     }
+    .v-list-item__icon {
+      color: $main-color;
+    }
   }
+  .v-list-item--link:before {
+    background-color: $main-color !important;
+  }
+
   .toolbar {
     height: $height-header-main;
     box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.15) !important;

@@ -138,4 +138,8 @@ export default {
   -moz-appearance: checkbox !important;
   -webkit-appearance: checkbox !important;
 }
+.redactor-focus.redactor-styles-on,
+.redactor-focus:focus.redactor-styles-on {
+  border-color: $main-color !important;
+}
 </style>
