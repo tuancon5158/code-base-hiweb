@@ -10,6 +10,7 @@
     <v-row>
       <v-col cols="12" sm="8" class="d-flex flex-column">
         <div class="elevation-form pa-3">
+          <!-- <InputTest label="Title" :model="['attributes', 'title']" :validate="[{ type: 'required' }]" /> -->
           <input-title />
           <ContentInput title="Description" subtitle="Maximum 100.000 characters" />
         </div>
@@ -42,7 +43,9 @@
 </template>
 
 <script>
+import InputTest from '@/views/website/components/inputs/InputDefault';
 import InputTitle from '@/views/website/components/InputTitle';
+
 import ContentInput from '@/views/website/components/Content';
 import Images from '@/views/website/products/components/Images';
 import ProductAvailability from '@/views/website/products/components/ProductAvailability';
@@ -70,7 +73,7 @@ export default {
       searchString: 'null hihi',
       title: '',
       attributes: {
-        title: 'attributes t',
+        title: 'oz',
         handle: '',
         description: '',
         content: '',
