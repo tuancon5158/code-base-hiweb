@@ -1,14 +1,14 @@
 <template>
   <div class="images-uploader">
     <div class="images-preview">
-      <v-row no-gutters v-if="files.length > 0">
+      <v-row no-gutters v-if="images.length > 0">
         <template v-if="multiple">
-          <v-col class="px-3 py-3" v-for="(image, key) in previews" :key="key" md="3" sm="6">
+          <v-col class="px-3 py-3" v-for="(image, key) in images" :key="key" md="3" sm="6">
             <v-hover>
               <template class="px-3" v-slot:default="{ hover }">
                 <v-card class="mx-auto" relative max-width="344">
                   <!-- Image -->
-                  <v-img :src="image" :lazy-src="image" max-height="150">
+                  <v-img contain :src="image.src" :lazy-src="image.src" max-height="150">
                     <template v-slot:placeholder>
                       <v-row class="fill-height ma-0" align="center" justify="center">
                         <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
@@ -52,71 +52,74 @@
                 <div class="fake-btn"><v-icon large>mdi-publish</v-icon></div>
                 <div class="file-msg">or drag and drop files here</div>
               </div>
-              <input
-                ref="file"
-                class="file-input"
-                type="file"
-                :multiple="multiple"
-                @change="chooseFile"
+              <v-file-input
                 accept="image/*"
-              />
+                class="file-input"
+                @change="chooseFile"
+                :multiple="multiple"
+                v-model="files"
+              ></v-file-input>
             </div>
           </v-col>
         </template>
         <template v-else>
-          <v-col class="px-3" v-for="(image, key) in previews" :key="key" md="12" sm="12">
-            <v-hover>
-              <template class="px-3" v-slot:default="{ hover }">
-                <v-card class="mx-auto" relative max-width="344">
-                  <!-- Image -->
-                  <v-img :src="image" :lazy-src="image" max-with="100%" max-height="250">
-                    <template v-slot:placeholder>
-                      <v-row class="fill-height ma-0" align="center" justify="center">
-                        <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
-                      </v-row>
-                    </template>
-                  </v-img>
-                  <!-- loading -->
-                  <v-row v-if="loading" class="loading-img fill-height ma-0 absolute" align="center" justify="center">
-                    <v-progress-circular indeterminate color="grey"></v-progress-circular>
-                  </v-row>
-                  <!-- overlay -->
-                  <v-fade-transition>
-                    <v-overlay v-if="hover" absolute color="#036358">
-                      <v-btn @click="$refs.file.click()">Change</v-btn>
-                      <v-btn
-                        @click="
-                          showPreview = true;
-                          preview = image;
-                        "
-                      >
-                        <v-icon>fas fa-eye</v-icon>
-                      </v-btn>
-                      <v-btn
-                        @click="
-                          showEditAlt = true;
-                          preview = image;
-                        "
-                      >
-                        ALT
-                      </v-btn>
-                      <v-btn @click="deleteFile(key)"><v-icon>mdi-delete</v-icon></v-btn>
-                    </v-overlay>
-                  </v-fade-transition>
-                </v-card>
-              </template>
-            </v-hover>
-          </v-col>
+          <v-hover v-if="images && images.length > 0">
+            <template class="px-3" v-slot:default="{ hover }">
+              <v-card class="mx-auto" relative max-width="344">
+                <!-- Image -->
+                <v-img contain :src="images[0].src" :lazy-src="images[0].src" max-with="100%" max-height="250">
+                  <template v-slot:placeholder>
+                    <v-row class="fill-height ma-0" align="center" justify="center">
+                      <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+                    </v-row>
+                  </template>
+                </v-img>
+                <!-- loading -->
+                <v-row v-if="loading" class="loading-img fill-height ma-0 absolute" align="center" justify="center">
+                  <v-progress-circular indeterminate color="grey"></v-progress-circular>
+                </v-row>
+                <!-- overlay -->
+                <v-fade-transition>
+                  <v-overlay v-if="hover" absolute color="#036358">
+                    <v-btn @click="$refs.file.click()">Change</v-btn>
+                    <v-btn
+                      @click="
+                        showPreview = true;
+                        preview = images[0];
+                      "
+                    >
+                      <v-icon>fas fa-eye</v-icon>
+                    </v-btn>
+                    <v-btn
+                      @click="
+                        showEditAlt = true;
+                        preview = images[0];
+                      "
+                    >
+                      ALT
+                    </v-btn>
+                    <v-btn @click="deleteFile(0)"><v-icon>mdi-delete</v-icon></v-btn>
+                  </v-overlay>
+                </v-fade-transition>
+              </v-card>
+            </template>
+          </v-hover>
         </template>
       </v-row>
     </div>
     <!-- input file -->
-    <div class="file-drop-area" v-show="!files || files.length == 0">
+    <div class="file-drop-area" v-show="!images || images.length == 0">
       <div class="text-center">
         <div class="fake-btn"><v-icon large>mdi-publish</v-icon></div>
         <div class="file-msg">or drag and drop files here</div>
       </div>
-      <input ref="file" class="file-input" type="file" :multiple="multiple" @change="chooseFile" accept="image/*" />
+      <v-file-input
+        accept="image/*"
+        class="file-input"
+        @change="chooseFile"
+        :multiple="multiple"
+        v-model="files"
+      ></v-file-input>
     </div>
 
     <!-- Dialog show preview -->
@@ -152,7 +155,7 @@
             <v-img max-height="600" contain :src="preview"></v-img>
           </v-col>
           <v-col class="px-3 py-3" cols="12" sm="12" md="6">
-            <v-text-field></v-text-field>
+            <v-text-field v-model="preview.alt"></v-text-field>
             <span>
               Write a brief description of this image to improve search engine optimization (SEO) and accessibility for
               visually impaired customers.
@@ -181,14 +184,21 @@ export default {
   props: {
     multiple: {
       type: Boolean,
-      default: false,
+      default: true,
+    },
+    images: {
+      type: Array,
+      default: function() {
+        return [];
+      },
     },
   },
   data() {
     return {
       files: [],
-      previews: [],
-      preview: null,
+      preview: {
+        alt: '',
+      },
       errors: [],
       overlay: false,
       absolute: true,
@@ -200,8 +210,6 @@ export default {
   },
   methods: {
     chooseFile() {
-      var validExts = ['.xlsx', '.xls', '.csv'];
-      this.files = Array.from(this.$refs.file.files);
       console.log(this.files);
       this.files.forEach(f => {
         if (!f.type.match('image.*')) {
@@ -210,10 +218,24 @@ export default {
         let reader = new FileReader();
         let that = this;
         reader.onload = function(e) {
+          let obj = {
+            alt: 'example',
+            alt_text: '',
+            created_at: '2021-01-08T09:42:43+00:00',
+            height: 1221,
+            id: 719669418,
+            position: 1,
+            product_id: 1000000132471764,
+            src: e.target.result,
+            updated_at: '2021-01-08T09:42:44+00:00',
+            variant_ids: [],
+            watermarked: false,
+            width: 564,
+          };
           if (that.multiple) {
-            that.previews.push(e.target.result);
+            that.images.push(obj);
           } else {
-            that.previews = [e.target.result];
+            that.$set(that.images, 0, obj);
           }
         };
         reader.readAsDataURL(f);
@@ -229,7 +251,7 @@ export default {
     deleteFile(key) {
       console.log(this.files);
       this.files.splice(key, 1);
-      this.previews.splice(key, 1);
+      this.images.splice(key, 1);
     },
   },
 };
@@ -339,6 +361,24 @@ export default {
     width: 100%;
     cursor: pointer;
     opacity: 0;
+    input {
+      max-width: 100%;
+      max-height: 100%;
+      width: 100%;
+      height: 100%;
+    }
+    .v-input__control {
+      height: 100%;
+    }
+    .v-input__slot {
+      height: 100% !important;
+    }
+    .v-text-field__slot {
+      height: 100%;
+    }
+    .v-file-input__text {
+      cursor: pointer;
+    }
     &:focus {
       outline: none;
     }
