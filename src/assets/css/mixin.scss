@@ -13,3 +13,6 @@
   justify-content: $justify;
   align-items: $align;
 }
+@mixin boderRadius($size: 1px, $color: #ddd, $type: solid) {
+  border-radius: $size $type $color;
+}

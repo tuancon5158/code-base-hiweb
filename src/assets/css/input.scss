@@ -1,4 +1,5 @@
 //all input Vuetify
+@import './variables.scss';
 
 .v-input:not(.v-input--checkbox):not(.v-input--radio-group--column):not(.v-input--switch):not(.v-input__slider) {
   &.error--text {
@@ -11,6 +12,15 @@
     border: 0.01px solid $border-color;
     border-radius: 8px !important;
     color: $input-color;
+    .v-text-field__prefix {
+      padding-left: 4px;
+      font-weight: bold;
+      // background-color: black;
+    }
+    .v-text-field__suffix {
+      padding-right: 4px;
+      font-weight: bold;
+    }
   }
 }
 .v-input.v-input--is-focused:not(.v-input--checkbox):not(.v-input--radio-group--column):not(.v-input--switch):not(.v-input__slider) {
@@ -39,7 +49,7 @@
 //height v-text field
 .v-input.v-text-field:not(.v-textarea) {
   .v-input__slot {
-    height: 36px;
+    height: $min-height-input;
     input {
       padding: 10px 15px !important;
     }
@@ -52,7 +62,8 @@
 //height v-select
 .v-input.v-text-field.v-select:not(.v-textarea) {
   .v-input__slot {
-    height: 36px;
+    height: auto;
+    min-height: $min-height-input;
     input {
       padding: 10px 15px !important;
     }
@@ -63,7 +74,7 @@
 }
 .v-input.v-select:not(.v-textarea) {
   .v-input__slot {
-    height: 36px;
+    height: $min-height-input;
     input {
       padding: 10px 15px !important;
     }

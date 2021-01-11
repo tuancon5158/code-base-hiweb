@@ -7,8 +7,16 @@
     multiple
     persistent-hint
     small-chips
+    :placeholder="placeholder"
+    hide-details
     append-icon=""
-  ></v-combobox>
+  >
+    <template v-slot:selection="data">
+      <v-chip close :key="data.item" :disabled="data.disabled" @click:close="data.parent.selectItem(data.item)">
+        {{ data.item }}
+      </v-chip>
+    </template>
+  </v-combobox>
 </template>
 
 <script>
@@ -19,6 +27,10 @@ export default {
       default: '',
     },
     error: {
+      type: String,
+      default: '',
+    },
+    placeholder: {
       type: String,
       default: '',
     },

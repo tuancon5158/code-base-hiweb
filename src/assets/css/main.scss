@@ -1,6 +1,8 @@
 @import './variables.scss';
 @import './normalize.scss';
+@import './checkbox.scss';
 @import './input.scss';
+@import './transition.scss';
 @import './button.scss';
 
 .label-form {
@@ -12,6 +14,64 @@
 .pointer {
   cursor: pointer;
 }
-.page-list {
-  padding: 5px;
+.text-color--main {
+  color: $main-color;
 }
+
+//
+.page-header {
+  .page-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+}
+
+.page__table-container {
+  box-shadow: var(--p-card-shadow, 0 0 0 1px rgba(63, 63, 68, 0.05), 0 1px 3px 0 rgba(63, 63, 68, 0.15));
+  padding: 10px;
+  outline: 0.1rem solid transparent;
+  @include boderRadius();
+  .tab {
+    .v-tab:first-child {
+      margin-left: 0px !important;
+    }
+    .v-tab {
+      text-transform: none !important;
+    }
+  }
+}
+.pointer {
+  cursor: pointer;
+}
+.elevation-form {
+  box-shadow: 0 0 0 1px rgba(63, 63, 68, 0.05), 0 1px 3px 0 rgba(63, 63, 68, 0.15);
+  background: white;
+}
+.form-component {
+  // padding: 12px;
+  background: white;
+  label {
+    font-weight: 700;
+    font-size: 16px;
+    color: $label-color-form;
+    .label-checkbox {
+      font-weight: none !important;
+      text-decoration: none !important;
+    }
+  }
+  .link-add {
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+    line-height: 20px;
+    margin: 0;
+    cursor: pointer;
+    color: #0093ed !important;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+// .form-component-product{
+
+// }
