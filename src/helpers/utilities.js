@@ -24,6 +24,11 @@ class Utilities {
     return tmpObject;
   }
 
+  comparisonTwoObject(object1, object2) {
+    console.log(object1, object2, 'asdasd');
+    return _.isEqual(object1, object2);
+  }
+
   /**
    * Merge 2 objects
    *
