@@ -2,6 +2,8 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import productRoutes from '@/router/website/products';
 import pageRoutes from '@/router/website/pages';
+import menuRoutes from '@/router/website/menus';
+import redirectsRoutes from '@/router/website/redirects';
 const Home = () => import(/* webpackChunkName: "" */ '@/views/home');
 const Website = () => import(/* webpackChunkName: "" */ '@/views/website');
 const Page404 = () => import(/* webpackChunkName: "" */ '@/views/404');
@@ -22,7 +24,7 @@ export default new VueRouter({
       path: '/w/:domain',
       name: 'website',
       component: Website,
-      children: [...productRoutes, ...pageRoutes],
+      children: [...productRoutes, ...menuRoutes, ...redirectsRoutes, ...pageRoutes],
     },
 
     {

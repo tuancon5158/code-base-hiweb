@@ -7,7 +7,7 @@
       <v-col cols="12" md="6" sm="6" xs="6" class="d-flex align-center justify-end">
         <v-btn @click="$router.push({ name: 'website.pages.create' })" color="primary">Add Page</v-btn>
       </v-col>
-      <v-col cols="12" md="12" sm="12" xs="12">
+      <v-col v-if="!document || document.length == 0 || document == null" cols="12" md="12" sm="12" xs="12">
         <v-card class="p-10">
           <v-card-text class="text-center">
             <v-img
@@ -27,6 +27,60 @@
           </v-card-text>
         </v-card>
       </v-col>
+      <v-col v-else cols="12" md="12" sm="12" xs="12">
+        <Resource :document="document" :columns="columns" />
+      </v-col>
     </v-row>
   </div>
 </template>
+<script>
+import Resource from '@/components/Resources';
+import resourceListMixin from '@/mixins/resource-list';
+import filter from '@/const/filters/product-filter';
+
+export default {
+  components: {
+    Resource,
+  },
+  mixins: [resourceListMixin],
+  data() {
+    return {
+      resourceType: 'pages',
+      tabs: [
+        { name: 'All', key: '' },
+        { name: 'Visible', key: 'visible' },
+        { name: 'Hidden', key: 'hidden' },
+      ],
+      columns: {
+        Selectable: {
+          blankLabel: true,
+          kind: 'selectable',
+          width: 1,
+        },
+        Product: {
+          // blankLabel: true,
+          kind: 'image-title',
+        },
+        Type: {
+          field: 'group',
+          kind: 'text',
+        },
+        Vendor: {
+          field: 'vendor',
+          kind: 'text',
+        },
+        Actions: {
+          kind: 'actions',
+          // blankLabel: true,
+        },
+      },
+      searchableField: '',
+      sortable: [],
+      filter,
+    };
+  },
+  created() {
+    console.log(this.document);
+  },
+};
+</script>

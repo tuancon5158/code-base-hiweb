@@ -1,5 +1,6 @@
 <template>
-  <div class="admin-form-wysiwyg">
+  <div class="admin-form-wysiwyg form-component">
+    <label class="d-flex">{{ label }}</label>
     <textarea :id="id" class="admin-form-wysiwyg__wrapper" :value="value"></textarea>
   </div>
 </template>
@@ -12,6 +13,10 @@ import '@/packages/redactor/redactor.min.css';
 
 export default {
   props: {
+    label: {
+      type: String,
+      default: '',
+    },
     /**
      * Editor initial height
      */
