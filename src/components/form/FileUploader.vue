@@ -1,18 +1,27 @@
 <template>
   <div class="file-uploader">
-    <div class="file-drop-area">
+    <div class="file-drop-area" v-if="drag">
       <div class="text-center">
         <div class="fake-btn"><v-icon large>mdi-publish</v-icon></div>
         <div class="file-msg">or drag and drop files here</div>
       </div>
-      <input
+      <v-file-input
         ref="file"
+        v-model="files"
+        @change="selectedFiles"
         class="file-input"
-        type="file"
         :multiple="multiple"
-        @change="chooseFile"
-        accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
-      />
+        :accept="accept"
+      ></v-file-input>
+    </div>
+    <div v-else>
+      <v-file-input
+        ref="file"
+        v-model="files"
+        @change="selectedFiles"
+        :multiple="multiple"
+        :accept="accept"
+      ></v-file-input>
     </div>
   </div>
 </template>
@@ -24,26 +33,43 @@ export default {
       type: Boolean,
       default: false,
     },
+    drag: {
+      type: Boolean,
+      default: false,
+    },
+    maxSize: {
+      type: Number,
+      default: 1024 * 1024,
+    },
+    accept: {
+      type: String,
+      default: '.csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel',
+    },
   },
   data() {
     return {
       files: [],
       errors: [],
+      types: ['text/csv', 'application/vnd.ms-excel', 'text/plain'],
     };
   },
   methods: {
-    chooseFile() {
-      var validExts = ['.xlsx', '.xls', '.csv'];
-      this.files = this.$refs.file.files[0];
-      if (this.files.size > 1024 * 1024) {
-        this.files = null;
-        this.errors.push('file larger than 1mb');
-      }
-      if (this.files.type != 'text/csv' && this.files.type != 'application/vnd.ms-excel') {
-        this.files = null;
-        this.errors.push('File type must be .csv');
+    selectedFiles() {
+      this.errors = [];
+      if (this.files) {
+        this.files.forEach(file => {
+          if (file.size > this.maxSize) {
+            this.errors.push('File ' + file.name + ' larger than ' + this.maxSize / (1024 * 1024) + 'mb.');
+          }
+          if (!this.types.includes(file.type)) {
+            this.errors.push('Invalid file type.');
+          }
+        });
       }
       let fileResources = {};
+      if (this.errors.length > 0) {
+        this.files = null;
+      }
       fileResources.file = this.files;
       fileResources.errors = this.errors;
       this.$emit('callback', fileResources);
@@ -108,6 +134,7 @@ export default {
     border: 3px dashed #ccc;
     border-radius: 3px;
     transition: 0.2s;
+    cursor: pointer;
     &.is-active {
       background-color: rgba(255, 255, 255, 0.05);
     }
@@ -139,6 +166,24 @@ export default {
     width: 100%;
     cursor: pointer;
     opacity: 0;
+    input {
+      max-width: 100%;
+      max-height: 100%;
+      width: 100%;
+      height: 100%;
+    }
+    .v-input__control {
+      height: 100%;
+    }
+    .v-input__slot {
+      height: 100% !important;
+    }
+    .v-text-field__slot {
+      height: 100%;
+    }
+    .v-file-input__text {
+      cursor: pointer;
+    }
     &:focus {
       outline: none;
     }
