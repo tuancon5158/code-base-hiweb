@@ -53,6 +53,7 @@
             :items="listVariants"
             item-key="name"
             show-select
+            disable-pagination
             hide-default-footer
             single-select
           >

@@ -11,6 +11,7 @@ export default class Request {
         'Content-Type': 'application/json',
       },
     });
+    this.api.interceptors.response.use(this.handleSuccess, this.handleError);
   }
   setToken(token) {
     this.api.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -18,7 +19,12 @@ export default class Request {
   setURL(url) {
     this.api.defaults.baseURL = `${url}`;
   }
-
+  handleSuccess(response) {
+    return response;
+  }
+  handleError(error) {
+    return Promise.reject(error);
+  }
   get(path, options) {
     return this.api.get(path, options);
   }
