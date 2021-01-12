@@ -87,7 +87,7 @@ import slugify from '@/helpers/slugify';
 export default {
   data() {
     return {
-      isShowAddVariants: true,
+      isShowAddVariants: false,
       text: '',
       listVariants: [],
       variants: [],
