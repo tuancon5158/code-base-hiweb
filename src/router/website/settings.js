@@ -10,9 +10,8 @@ export default [
     component: () => import('@/views/website/settings/components/Payments'),
   },
   {
-    path: 'menus/update/:id',
-    name: 'website.menus.update',
-    props: true,
-    component: () => import('@/views/website/menus/Update'),
+    path: 'settings/shipping',
+    name: 'website.settings.shipping',
+    component: () => import('@/views/website/shipping'),
   },
 ];

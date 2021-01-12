@@ -59,7 +59,7 @@ export default {
           icon: 'fas fa-shipping-fast',
           title: 'Shipping',
           des: 'Manage how you ship orders to customers',
-          router: '',
+          router: 'website.settings.shipping',
         },
         {
           icon: 'far fa-bell',
