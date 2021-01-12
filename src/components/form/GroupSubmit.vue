@@ -7,7 +7,7 @@
       <h3>Unsaved changes</h3>
       <v-spacer></v-spacer>
       <v-btn color="error" class="mr-3" @click="callbackCancel">Discard</v-btn>
-      <v-btn color="success" @click="callbackSubmit">Create</v-btn>
+      <v-btn color="primary" @click="callbackSubmit">Create</v-btn>
     </v-col>
   </transition>
 </template>

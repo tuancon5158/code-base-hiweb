@@ -44,7 +44,7 @@
       <v-col cols="12" class="d-flex">
         <v-spacer></v-spacer>
         <v-btn color="error" class="mr-3" @click="onCancel">Discard</v-btn>
-        <v-btn color="success" @click="onSubmit">Create</v-btn>
+        <v-btn color="primary" @click="onSubmit">Create</v-btn>
       </v-col>
     </v-row>
     <BeforeLeavePage />
@@ -83,6 +83,7 @@ export default {
   data() {
     let defaultForm = {
       title: 'test',
+      tuancon: '',
       handle: '',
       description: '',
       content: '',
@@ -94,7 +95,9 @@ export default {
       option2: null,
       option3: null,
 
-      price: 0,
+      price1: 0,
+      price2: 0,
+      price3: 0,
       compare_at_price: 0,
     };
     return {
