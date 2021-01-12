@@ -111,11 +111,17 @@ export default {
     //   { type: 'email' },
     //   { type: 'required' },
     //   { type: 'minValue', min: 3 },
-    //   { type: 'maxValue', type: 10 },
+    //   { type: 'maxValue', max: 10 },
     // ]
     validate: {
       type: Array,
-      default: () => [],
+      default: () => [
+        { type: 'phone' },
+        { type: 'email' },
+        { type: 'required' },
+        { type: 'minLength', min: 0 },
+        { type: 'maxLength', max: 255 },
+      ],
     },
   },
   created() {
@@ -125,13 +131,12 @@ export default {
   computed: {
     errors() {
       const errors = [];
-      console.log(this.$parent.$parent.$v);
       if (this.model.length === 1) {
         if (this.validate.length > 0) {
-          console.log(this.validate.length);
           if (!this.$parent.$parent.$v[this.model[0]].$dirty) return errors;
           for (let i = 0; i < this.validate.length; i++) {
-            !this.$parent.$parent.$v[this.model[0]][this.validate[i].type] &&
+            this.$parent.$parent.$v[this.model[0]][this.validate[i].type] !== undefined &&
+              !this.$parent.$parent.$v[this.model[0]][this.validate[i].type] &&
               errors.push(this.$t(`${this.validate[i].type}`));
           }
           return errors;
@@ -139,14 +144,14 @@ export default {
       }
       if (this.model.length === 2) {
         if (this.validate.length > 0) {
-          console.log(this.$parent.$parent.$v[this.model[0][1]]);
           if (
             this.$parent.$parent.$v[this.model[0]][this.model[1]] !== undefined &&
             !this.$parent.$parent.$v[this.model[0]][this.model[1]].$dirty
           )
             return errors;
           for (let i = 0; i < this.validate.length; i++) {
-            !this.$parent.$parent.$v[this.model[0]][this.model[1]][this.validate[i].type] &&
+            this.$parent.$parent.$v[this.model[0]][this.model[1]][this.validate[i].type] !== undefined &&
+              !this.$parent.$parent.$v[this.model[0]][this.model[1]][this.validate[i].type] &&
               errors.push(this.$t(`${this.validate[i].type}`));
           }
           return errors;

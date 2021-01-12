@@ -1,6 +1,6 @@
 <template>
   <div class="form-component">
-    <label class="d-flex">{{ lable }}</label>
+    <label class="d-flex">{{ label }}</label>
     <template v-if="typeComponent === 'input'">
       <v-text-field
         :type="type"
@@ -113,11 +113,17 @@ export default {
     // ]
     validate: {
       type: Array,
-      default: () => [],
+      default: () => [
+        { type: 'phone' },
+        { type: 'email' },
+        { type: 'required' },
+        { type: 'minLength', min: 0 },
+        { type: 'maxLength', max: 255 },
+      ],
     },
-    lable: {
+    label: {
       type: String,
-      default: 'Lable',
+      default: 'label',
     },
   },
   created() {},

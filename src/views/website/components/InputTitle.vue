@@ -8,7 +8,7 @@
       :error-messages="!$parent.$v.attributes.title.required ? 'asdasdas' : ''"
       aria-autocomplete="off"
     ></v-text-field> -->
-    <Test label="Title" :model="['attributes', 'title']" :validate="[{ type: 'required' }]" />
+    <Test label="Title" :model="['attributes', 'title']" />
   </div>
 </template>
 <script>
