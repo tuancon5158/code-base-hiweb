@@ -12,15 +12,7 @@
     append-icon=""
   >
     <template v-slot:selection="data">
-      <v-chip
-        close
-        :key="JSON.stringify(data.item)"
-        v-bind="data.attrs"
-        :input-value="data.selected"
-        :disabled="data.disabled"
-        @click:close="data.parent.selectItem(data.item)"
-      >
-        <!-- <v-avatar class="accent white--text" left v-text="data.item.slice(0, 1).toUpperCase()"></v-avatar> -->
+      <v-chip close :key="data.item" :disabled="data.disabled" @click:close="data.parent.selectItem(data.item)">
         {{ data.item }}
       </v-chip>
     </template>
