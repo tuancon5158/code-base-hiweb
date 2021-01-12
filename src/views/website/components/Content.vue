@@ -49,46 +49,46 @@ export default {
     // Register redactor wysiwyg image insert button
     let superObject = this;
 
-    ($R => {
-      $R.add('plugin', 'imageSelector', {
-        // construct
-        init: function(app) {
-          // define redactor app
-          this.app = app;
+    // ($R => {
+    //   $R.add('plugin', 'imageSelector', {
+    //     // construct
+    //     init: function(app) {
+    //       // define redactor app
+    //       this.app = app;
 
-          // define toolbar service
-          this.toolbar = app.toolbar;
-        },
+    //       // define toolbar service
+    //       this.toolbar = app.toolbar;
+    //     },
 
-        start: function() {
-          // set up the button
-          var buttonData = {
-            title: 'Insert Images',
-            api: 'plugin.imageSelector.toggle',
-          };
+    //     start: function() {
+    //       // set up the button
+    //       var buttonData = {
+    //         title: 'Insert Images',
+    //         api: 'plugin.imageSelector.toggle',
+    //       };
 
-          // add the button to the toolbar
-          var $button = this.toolbar.addButton('image-selector-button', buttonData);
-        },
+    //       // add the button to the toolbar
+    //       var $button = this.toolbar.addButton('image-selector-button', buttonData);
+    //     },
 
-        toggle: function() {
-          // Callback
-          event.$emit('show-modal', 'wysiwyg-image-selector');
+    //     toggle: function() {
+    //       // Callback
+    //       event.$emit('show-modal', 'wysiwyg-image-selector');
 
-          // Set callback
-          event.$emit('set-callback-image-selector-wysiwyg-image-selector', files => {
-            // Insert images to editor
-            let html = '';
-            files.forEach(file => {
-              html += '<p><img src="' + imageHelper.resize(file.getAttributes().path, 300, true) + '" /></p>';
-            });
+    //       // Set callback
+    //       event.$emit('set-callback-image-selector-wysiwyg-image-selector', files => {
+    //         // Insert images to editor
+    //         let html = '';
+    //         files.forEach(file => {
+    //           html += '<p><img src="' + imageHelper.resize(file.getAttributes().path, 300, true) + '" /></p>';
+    //         });
 
-            $R(this.app.rootElement, 'insertion.insertHtml', html);
-          });
-        },
-      });
-      // eslint-disable-next-line no-undef
-    })(Redactor);
+    //         $R(this.app.rootElement, 'insertion.insertHtml', html);
+    //       });
+    //     },
+    //   });
+    //   // eslint-disable-next-line no-undef
+    // })(Redactor);
   },
 
   methods: {

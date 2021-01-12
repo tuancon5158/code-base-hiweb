@@ -5,16 +5,13 @@
     </label>
     <v-row gutters>
       <v-col cols="6">
-        <label class="d-flex fz-13">Price</label>
-        <v-text-field hide-details="" type="number" suffix="USD" aria-autocomplete="off"></v-text-field>
+        <InputNest label="Price" :model="['attributes', 'price1']" type="number" suffix="USD" />
       </v-col>
       <v-col cols="6">
-        <label class="d-flex fz-13">Compare at price </label>
-        <v-text-field hide-details="" type="number" suffix="USD" aria-autocomplete="off"></v-text-field>
+        <InputNest label="Compare at price" :model="['attributes', 'price2']" type="number" suffix="USD" />
       </v-col>
       <v-col cols="6">
-        <label class="d-flex fz-13">Cost per item </label>
-        <v-text-field hide-details="" type="number" suffix="USD" aria-autocomplete="off"></v-text-field>
+        <InputNest label="Cost per item" :model="['attributes', 'price3']" type="number" suffix="USD" />
       </v-col>
     </v-row>
   </div>

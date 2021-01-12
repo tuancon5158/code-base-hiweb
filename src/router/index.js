@@ -2,6 +2,8 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import productRoutes from '@/router/website/products';
 import menuRoutes from '@/router/website/menus';
+import pageRoutes from '@/router/website/pages';
+import settingRoutes from '@/router/website/settings';
 import redirectsRoutes from '@/router/website/redirects';
 const Home = () => import(/* webpackChunkName: "" */ '@/views/home');
 const Website = () => import(/* webpackChunkName: "" */ '@/views/website');
@@ -23,7 +25,7 @@ export default new VueRouter({
       path: '/w/:domain',
       name: 'website',
       component: Website,
-      children: [...productRoutes, ...menuRoutes, ...redirectsRoutes],
+      children: [...productRoutes, ...menuRoutes, ...redirectsRoutes, ...pageRoutes, ...settingRoutes],
     },
 
     {

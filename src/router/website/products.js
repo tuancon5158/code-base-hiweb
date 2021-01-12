@@ -21,7 +21,7 @@ export default [
     component: () => import('@/views/website/products/Update'),
   },
   {
-    path: 'dattest',
+    path: 'products/datest',
     name: 'website.products.dattest',
     props: true,
     component: () => import('@/views/website/test/DAT'),

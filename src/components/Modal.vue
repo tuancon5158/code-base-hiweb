@@ -11,7 +11,7 @@
         <div class="close-icon" @click="$parent[model] = false">
           <v-icon>fas fa-times</v-icon>
         </div>
-
+        <v-divider></v-divider>
         <!-- Content -->
         <v-card-text>
           <slot name="content"></slot>
@@ -125,7 +125,7 @@ export default {
 <style lang="scss">
 .close-icon {
   position: absolute;
-  top: 5px;
+  top: 16px;
   right: 10px;
   cursor: pointer;
 }

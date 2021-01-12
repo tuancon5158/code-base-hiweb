@@ -65,13 +65,21 @@
     line-height: 20px;
     margin: 0;
     cursor: pointer;
-    color: #0093ed !important;
+    color: $main-color !important;
     text-decoration: none;
     &:hover {
       text-decoration: underline;
     }
   }
 }
-// .form-component-product{
+//Hidden arrow input number
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 
-// }
+/* Firefox */
+input[type='number'] {
+  -moz-appearance: textfield;
+}

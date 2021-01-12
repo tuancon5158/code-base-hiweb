@@ -31,7 +31,7 @@
               exact
               v-for="(child, i) in item.children"
               :key="i"
-              :to="{ path: child.path }"
+              :to="{ name: child.name }"
               class
             >
               <v-list-item-content class="ml-3">
@@ -39,7 +39,7 @@
               </v-list-item-content>
             </v-list-item>
           </v-list-group>
-          <v-list-item exact active-class="siderbar-active" v-else :to="{ path: item.path }">
+          <v-list-item exact active-class="siderbar-active" v-else :to="{ name: item.name }">
             <v-list-item-icon>
               <v-icon size="small">{{ item.icon }}</v-icon></v-list-item-icon
             >

@@ -8,6 +8,7 @@
     :disable-route-watcher="true"
     right
     :value="drawer"
+    @input="checkDrawer"
     fixed
     app
   >
@@ -39,7 +40,7 @@
       <v-card class="pa-5 d-flex" max-width>
         <v-btn color="error" @click="clearFilter">Clear</v-btn>
         <v-spacer></v-spacer>
-        <v-btn color="success" @click="doneSelectFilter">Done</v-btn>
+        <v-btn color="primary" @click="doneSelectFilter">Done</v-btn>
       </v-card>
     </div>
   </v-navigation-drawer>
@@ -105,7 +106,15 @@ export default {
       filterData: [],
     };
   },
+  watch: {
+    drawer() {
+      console.log('1212');
+    },
+  },
   methods: {
+    checkDrawer(value) {
+      this.$emit('update:drawer', value);
+    },
     addCondition(i) {
       this.filterData.push({
         field: i,
