@@ -5,16 +5,13 @@
     </label>
     <v-row gutters>
       <v-col cols="6">
-        <label class="d-flex fz-13">SKU (stock keeping unit) </label>
-        <v-text-field hide-details="" aria-autocomplete="off"></v-text-field>
+        <InputNest label="SKU (stock keeping unit)" :model="['attributes', 'price1']" />
       </v-col>
       <v-col cols="6">
-        <label class="d-flex fz-13">Barcode (ISBN, UPC, GTIN, etc.) </label>
-        <v-text-field hide-details="" aria-autocomplete="off"></v-text-field>
+        <InputNest label="Barcode (ISBN, UPC, GTIN, etc.)" :model="['attributes', 'price1']" />
       </v-col>
       <v-col cols="6">
-        <label class="d-flex fz-13">Inventory policy </label>
-        <v-text-field hide-details="" aria-autocomplete="off"></v-text-field>
+        <InputNest label="Inventory policy " :model="['attributes', 'price1']" />
       </v-col>
     </v-row>
   </div>

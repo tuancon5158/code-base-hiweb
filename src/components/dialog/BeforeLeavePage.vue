@@ -1,5 +1,5 @@
 <template>
-  <v-dialog persistent v-model="$parent.isShowWarningLeavePage" width="970">
+  <v-dialog persistent v-model="$parent.isShowWarningLeavePage" width="700">
     <v-card>
       <v-card-title class=" grey lighten-2">
         Unsaved changes
@@ -16,7 +16,7 @@
         <v-btn color="error" @click="$parent.isShowWarningLeavePage = false">
           Cancel
         </v-btn>
-        <v-btn color="success" @click="$parent.callBackLeavePage">
+        <v-btn color="primary" @click="$parent.callBackLeavePage">
           I accept
         </v-btn>
       </v-card-actions>

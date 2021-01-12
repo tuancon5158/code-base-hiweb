@@ -39,7 +39,7 @@
       <v-card class="pa-5 d-flex" max-width>
         <v-btn color="error" @click="clearFilter">Clear</v-btn>
         <v-spacer></v-spacer>
-        <v-btn color="success" @click="doneSelectFilter">Done</v-btn>
+        <v-btn color="primary" @click="doneSelectFilter">Done</v-btn>
       </v-card>
     </div>
   </v-navigation-drawer>
