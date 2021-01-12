@@ -16,8 +16,8 @@ const menu = [
       },
       {
         title: 'Test componet',
-        path: '/w/abc.hiwebio/dattest',
-        name: 'website.products',
+        path: '/w/abc.hiwebio/products/dattest',
+        name: 'website.products.dattest',
       },
     ],
   },
