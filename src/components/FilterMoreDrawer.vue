@@ -8,6 +8,7 @@
     :disable-route-watcher="true"
     right
     :value="drawer"
+    @input="checkDrawer"
     fixed
     app
   >
@@ -105,7 +106,15 @@ export default {
       filterData: [],
     };
   },
+  watch: {
+    drawer() {
+      console.log('1212');
+    },
+  },
   methods: {
+    checkDrawer(value) {
+      this.$emit('update:drawer', value);
+    },
     addCondition(i) {
       this.filterData.push({
         field: i,
