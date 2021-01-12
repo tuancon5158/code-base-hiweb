@@ -6,7 +6,7 @@
         <template>
           <div class="website-container">
             <!-- <loading-component /> -->
-            <HomeIndex v-if="currentRouteName === 'website'" />
+            <HomeIndex v-if="currentRouteName === 'website' || currentRouteName === 'websitesa'" />
             <router-view v-else />
           </div>
         </template>

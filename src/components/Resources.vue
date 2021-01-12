@@ -1,7 +1,11 @@
 <template>
   <v-row>
     <v-col cols="12" class="d-flex">
-      <div v-if="searchable" class="input-group input-group-flush input-group-merge" style="width:80%">
+      <div
+        v-if="searchable"
+        class="input-group input-group-flush input-group-merge"
+        :style="filter && filter.length ? 'width:80%' : 'width:100%'"
+      >
         <v-text-field v-model="$parent.searchString" placeholder="Search" autocomplete="off" />
       </div>
 
@@ -21,6 +25,7 @@
       </template>
       <!-- Filter Modal -->
       <FilterMoreDrawer
+        v-if="filter && filter.length > 0"
         :drawer.sync="drawer"
         :fields="filterFields"
         :filter="filterData"
