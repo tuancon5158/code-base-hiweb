@@ -5,6 +5,7 @@
         <v-col cols="12" sm="12" xs="12" class="mb-5 ml-5">
           <redirect class="mb-5" title="Pages" route="website.pages" />
           <h2>Add page</h2>
+          <GroupSubmit :callbackCancel="onCancel" :callbackSubmit="onSubmit" />
         </v-col>
         <v-col cols="12" md="8" sm="12" xs="12" class="px-5">
           <v-row no-gutters>
@@ -85,6 +86,7 @@
         </v-col>
       </v-row>
     </div>
+    <BeforeLeavePage />
   </div>
 </template>
 <script>
@@ -92,6 +94,7 @@ import InputText from '@/views/website/components/inputs/InputDefault';
 import TextEditor from '@/components/form/Wysiwyg';
 import { required, minLength, maxLength, email } from 'vuelidate/lib/validators';
 import Redirect from '@/components/RedirectTo';
+import resourceBeforeLeavePage from '@/mixins/before-change-router';
 
 export default {
   components: {
@@ -99,6 +102,7 @@ export default {
     TextEditor,
     Redirect,
   },
+  mixins: [resourceBeforeLeavePage],
   validations: {
     page: {
       title: {
@@ -131,6 +135,10 @@ export default {
       ],
       validate: [{ type: 'required' }, { type: 'maxLength', min: 3 }, { type: 'maxLength', max: 100 }],
     };
+  },
+  methods: {
+    onSubmit() {},
+    onCancel() {},
   },
 };
 </script>
