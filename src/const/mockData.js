@@ -15,6 +15,11 @@ const menu = [
         name: 'website.products',
       },
       {
+        title: 'Collections',
+        path: '/w/abc.hiwebio/collections',
+        name: 'website.collections',
+      },
+      {
         title: 'Test componet',
         path: '/w/abc.hiwebio/products/dattest',
         name: 'website.products.dattest',
