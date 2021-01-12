@@ -2,12 +2,12 @@ const menu = [
   {
     title: 'Home',
     icon: 'fas fa-home',
-    path: '/w/abc.hiwebio/',
+    name: 'website',
   },
   {
     title: 'Products',
     icon: 'fas fa-tags',
-    path: '/w/abc.hiwebio/products',
+    name: 'website.products',
     children: [
       {
         title: 'All products',
