@@ -12,7 +12,7 @@
           small
           outlined
           color="primary"
-          @click="drawer = !drawer"
+          @click.stop="drawer = !drawer"
           class="btn btn-sm btn-secondary mt-1 ml-4"
         >
           <h4>More Filter</h4>
@@ -21,7 +21,7 @@
       </template>
       <!-- Filter Modal -->
       <FilterMoreDrawer
-        :drawer="drawer"
+        :drawer.sync="drawer"
         :fields="filterFields"
         :filter="filterData"
         :sync-filter-query="false"
@@ -139,6 +139,15 @@ export default {
     };
   },
   methods: {
+    checkDrawer() {
+      console.log(this.drawer, 'hihi');
+      if (!this.drawer) {
+        this.drawer = true;
+      } else {
+        this.drawer = null;
+        this.drawer = true;
+      }
+    },
     removeFilterData(k) {
       this.tmpFilterData.splice(k, 1);
       // this.setTmpFilterData(this.tmpFilterData);
