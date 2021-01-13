@@ -2,7 +2,7 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import productRoutes from '@/router/website/products';
 import collectionRoutes from '@/router/website/collections';
-
+import ordersRoutes from '@/router/website/orders';
 import menuRoutes from '@/router/website/menus';
 import pageRoutes from '@/router/website/pages';
 import settingRoutes from '@/router/website/settings';
@@ -35,6 +35,7 @@ export default new VueRouter({
         ...pageRoutes,
         ...settingRoutes,
         ...collectionRoutes,
+        ...ordersRoutes,
       ],
     },
 

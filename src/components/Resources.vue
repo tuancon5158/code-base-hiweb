@@ -1,14 +1,9 @@
 <template>
   <v-row>
     <v-col cols="12" class="d-flex">
-      <div
-        v-if="searchable"
-        class="input-group input-group-flush input-group-merge"
-        :style="filter && filter.length ? 'width:80%' : 'width:100%'"
-      >
+      <div v-if="searchable" class="input-group input-group-flush input-group-merge" style="flex:1">
         <v-text-field v-model="$parent.searchString" placeholder="Search" autocomplete="off" />
       </div>
-
       <template v-if="filterFields && filterFields.length">
         <!-- Filter Button -->
         <v-btn
@@ -25,7 +20,7 @@
       </template>
       <!-- Filter Modal -->
       <FilterMoreDrawer
-        v-if="filter && filter.length > 0"
+        v-if="filterFields && filterFields.length > 0"
         :drawer.sync="drawer"
         :fields="filterFields"
         :filter="filterData"
