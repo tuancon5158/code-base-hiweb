@@ -66,7 +66,7 @@ export default {
 
       try {
         // Get page
-        this.document = (await axios.get(`/${this.resourceType}`)).data;
+        this.document = (await axios.get(`https://5b31f06482407e001413f0fe.mockapi.io/${this.resourceType}`)).data;
         // Loading state off
         this.isLoading = false;
       } catch (e) {
