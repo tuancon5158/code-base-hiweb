@@ -10,6 +10,9 @@ const mutations = {
   setAuthCheck(state, check) {
     state.authCheck = check ? true : false;
   },
+  setUser(state, user) {
+    state.user = user;
+  },
 };
 
 const actions = {};

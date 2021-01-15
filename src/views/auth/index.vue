@@ -14,7 +14,7 @@
         </div>
       </v-col>
       <v-col class="right-content d-none d-sm-flex" cols="12" md="8" sm="12">
-        Hiweb
+        <v-parallax style="height: 100%;width: 100%;" :src="require('@/assets/images/material.jpg')"></v-parallax>
       </v-col>
     </v-row>
   </div>
@@ -49,6 +49,9 @@ export default {
     @include flex();
     background: #131f37;
     color: white;
+  }
+  .v-parallax__image {
+    transform: translate(-50%) !important;
   }
 }
 .login-form {

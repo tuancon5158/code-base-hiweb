@@ -1,6 +1,7 @@
 <template>
   <v-col cols="12" sm="9">
     <h1 class="">Sign in</h1>
+    <Notification v-if="errorMessage.length > 0" :messages="errorMessage" type="error" />
     <div>
       <span class="label-form"> Email </span>
       <v-text-field
@@ -67,9 +68,14 @@
 
 <script>
 import STORAGE_NAME from '@/const/storage';
+import { authService } from '@/apis/auth.s';
+import Notification from '@/components/Notification';
 import { required, minLength, maxLength, email } from 'vuelidate/lib/validators';
 
 export default {
+  components: {
+    Notification,
+  },
   data() {
     return {
       type: 'password',
@@ -77,20 +83,31 @@ export default {
       password: null,
       isLoading: false,
       invalid: false,
+      errorMessage: [],
     };
   },
   methods: {
-    onLogin() {
+    /*
+    Fnc login
+    */
+    async onLogin() {
       this.isLoading = true;
       this.$v.$touch();
       this.invalid = this.$v.$invalid;
+      this.errorMessage = [];
       if (!this.$v.$invalid) {
-        this.$store.commit('setAuthCheck', true);
-        window.localStorage.setItem(STORAGE_NAME.TOKEN, 'user');
-        this.$router.push('/auth/shop');
-        setTimeout(() => {
+        try {
+          let data = await authService.login(this.email, this.password);
+          window.localStorage.setItem(STORAGE_NAME.ACCESS_TOKEN, data.data.accessToken || '');
+          window.localStorage.setItem(STORAGE_NAME.REFRESH_TOKEN, data.data.refreshToken || '');
+          window.localStorage.setItem(STORAGE_NAME.STORE_ID, data.data.storeId || '');
+          this.$store.commit('setAuthCheck', true);
+          this.$router.push('/auth/shop');
           this.isLoading = false;
-        }, 2000);
+        } catch (error) {
+          this.errorMessage = error.response.data.message || [];
+          this.isLoading = false;
+        }
       } else {
         this.isLoading = false;
       }

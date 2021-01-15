@@ -56,6 +56,7 @@ import { required, minLength, maxLength, email, helpers, decimal } from 'vuelida
 import modal from '@/components/Modal';
 import Redirect from '@/components/RedirectTo';
 import Items from './components/Items';
+import slugify from '@/helpers/slugify';
 
 export default {
   display: 'Nested',
@@ -91,7 +92,7 @@ export default {
         required,
       },
       link: {
-        required,
+        required: false,
       },
     },
     menu: {
@@ -141,10 +142,13 @@ export default {
       output: void
     */
     addChild(data) {
+      console.log(123);
       let obj = {};
       obj.name = this.item.name;
       obj.link = this.item.link;
+      obj.handle = slugify(this.item.name);
       obj.children = [];
+      console.log(obj);
       data.children.push(obj);
     },
     /*
@@ -167,12 +171,14 @@ export default {
         let obj = {};
         obj.name = this.item.name;
         obj.link = this.item.link;
+        obj.handle = slugify(this.item.name);
         obj.children = [];
         if (this.note) {
           if (this.isCreated) {
             this.addChild(this.note);
           } else {
             this.note.name = this.item.name;
+            this.note.handle = slugify(this.item.name);
             this.note.link = this.item.link;
           }
         } else {
@@ -194,6 +200,14 @@ export default {
         console.log(this.menu);
       }
       this.isLoading = false;
+    },
+  },
+  watch: {
+    'menu.title': function() {
+      this.menu.handle = slugify(this.menu.title);
+    },
+    'item.name': function() {
+      this.item.handle = slugify(this.item.name);
     },
   },
 };

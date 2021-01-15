@@ -87,7 +87,7 @@ export default {
         required,
       },
       link: {
-        required,
+        required: false,
       },
     },
     menu: {
