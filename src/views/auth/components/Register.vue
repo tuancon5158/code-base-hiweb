@@ -1,6 +1,7 @@
 <template>
   <v-col cols="12" sm="9">
     <h1 class="">Sign up</h1>
+    <Notification v-if="errorMessage.length > 0" :messages="errorMessage" type="error" />
     <div>
       <span class="label-form"> Email </span>
       <v-text-field
@@ -85,9 +86,16 @@
 
 <script>
 import { required, minLength, maxLength, email, helpers } from 'vuelidate/lib/validators';
-const alpha = helpers.regex('alpha', /^[a-zA-Z]*$/);
+const alpha = helpers.regex('alpha', /^[a-zA-Z0-9]*$/);
+import { authService } from '@/apis/auth.s';
+import STORAGE_NAME from '@/const/storage';
+import Notification from '@/components/Notification';
+import { mapMutations } from 'vuex';
 
 export default {
+  components: {
+    Notification,
+  },
   data() {
     return {
       type: 'password',
@@ -96,6 +104,7 @@ export default {
       password: '',
       shopName: '',
       invalid: false,
+      errorMessage: [],
     };
   },
   validations: {
@@ -118,14 +127,29 @@ export default {
     },
   },
   methods: {
-    onSignup() {
+    /*
+    Fnc Signup
+    */
+    async onSignup() {
       this.isLoading = true;
       this.$v.$touch();
       this.invalid = this.$v.$invalid;
-      setTimeout(() => {
+      this.errorMessage = [];
+      if (!this.$v.$invalid) {
+        try {
+          let data = await authService.register(this.email, this.password, this.shopName);
+          window.localStorage.setItem(STORAGE_NAME.ACCESS_TOKEN, data.data.accessToken || '');
+          window.localStorage.setItem(STORAGE_NAME.REFRESH_TOKEN, data.data.refreshToken || '');
+          window.localStorage.setItem(STORAGE_NAME.STORE_ID, data.data.storeId || '');
+          this.$router.push({ name: 'auth/survey' });
+          this.isLoading = false;
+        } catch (error) {
+          this.errorMessage = error.response.data.message || [];
+          this.isLoading = false;
+        }
+      } else {
         this.isLoading = false;
-        this.$router.push({ name: 'auth/survey' });
-      }, 2000);
+      }
     },
   },
 };

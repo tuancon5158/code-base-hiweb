@@ -15,6 +15,10 @@ export default class Request {
   }
   setToken(token) {
     this.api.defaults.headers.common.Authorization = `Bearer ${token}`;
+    this.api.defaults.headers.common['x-access-token'] = token;
+  }
+  setStoreId(storeId) {
+    this.api.defaults.headers.common['x-store-id'] = storeId;
   }
   setURL(url) {
     this.api.defaults.baseURL = `${url}`;

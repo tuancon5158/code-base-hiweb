@@ -24,7 +24,7 @@ export default {
     // times
     times: {
       type: Number,
-      default: 10000000,
+      default: 5000,
     },
   },
   data() {

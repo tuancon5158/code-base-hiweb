@@ -1,6 +1,6 @@
 <template>
   <div class="customize-store">
-    <v-row>
+    <v-row v-if="!showNext">
       <v-col cols="12" md="6" sm="12">
         <h2>Your store is ready, let’s customize it!</h2>
         <p class="mt-5">
@@ -48,11 +48,13 @@
               :error-messages="invalid && !$v.font.required ? $t('Font is required') : ''"
               class="my-0"
               item-text="family"
+              item-value="family"
               auto-select-first
             ></v-autocomplete>
           </v-col>
-          <v-col cols="12" md="6" sm="12">
-            <v-btn :loading="isLoading" @click="save" color="primary">Take me to my store!</v-btn>
+          <v-col cols="12" md="12" sm="12" class="d-flex">
+            <v-btn @click="$parent.$parent.$parent.e1 = 3">Back</v-btn>
+            <v-btn class="ml-auto" :loading="isLoading" @click="next" color="primary">Take me to my store!</v-btn>
           </v-col>
         </v-row>
       </v-col>
@@ -80,11 +82,28 @@
         </div>
       </v-col>
     </v-row>
+    <v-row v-else>
+      <v-col cols="12">
+        <h2 class="text-center mb-5">Tell us a little bit about your experience of selling online</h2>
+        <span>How would you describe your experience of selling online?</span>
+        <v-select
+          v-model="mmoExperience"
+          :items="mmoExperiences"
+          item-text="name"
+          item-value="value"
+          single-line
+        ></v-select>
+        <div class="text-center mt-5">
+          <v-btn @click="submit" width="200" color="primary">Save</v-btn>
+        </div>
+      </v-col>
+    </v-row>
   </div>
 </template>
 
 <script>
 import { authService } from '@/apis/auth.s';
+import Api from '@/apis/';
 import { required, minLength, maxLength, email, helpers, decimal } from 'vuelidate/lib/validators';
 
 export default {
@@ -97,6 +116,7 @@ export default {
       default(data) {},
     },
   },
+  components: {},
   data() {
     return {
       swatches: [
@@ -106,6 +126,26 @@ export default {
         ['#00FFFF', '#00AAAA', '#005555'],
         ['#0000FF', '#0000AA', '#000055'],
       ],
+      showNext: false,
+      mmoExperiences: [
+        {
+          name: `I'm a newbie and have no experience in selling online`,
+          value: `I'm a newbie and have no experience in selling online`,
+        },
+        {
+          name: `I have experience in selling on other eCommerce platforms (Shopify, Woocommerce...)`,
+          value: `I have experience in selling on other eCommerce platforms (Shopify, Woocommerce...)`,
+        },
+        {
+          name: `I have experience in selling on eCommerce marketplaces (Amazon/Ebay/...)`,
+          value: `I have experience in selling on eCommerce marketplaces (Amazon/Ebay/...)`,
+        },
+        {
+          name: `I want to scale my business with the current revenue of over $500k/month`,
+          value: `I want to scale my business with the current revenue of over $500k/month`,
+        },
+      ],
+      mmoExperience: `I'm a newbie and have no experience in selling online`,
       primaryColor: '#288485',
       showMenu: false,
       font: 'Abel',
@@ -118,25 +158,40 @@ export default {
     font: {
       required,
     },
+    mmoExperience: {
+      required,
+    },
   },
   created() {
     this.getWebFonts();
   },
   methods: {
     async getWebFonts() {
-      let data = await authService.login('tuan', 'con');
+      let api = new Api();
+      let data = await api.get(
+        'https://www.googleapis.com/webfonts/v1/webfonts?key=AIzaSyB9NPXKIWWV1fiEyswYduuOA6Ng9t14VNA',
+      );
       this.fonts = data.data.items;
     },
     selectFont() {
       console.log(this.font);
     },
-    save() {
+    next() {
       this.isLoading = true;
       this.$v.$touch();
       this.invalid = this.$v.$invalid;
       if (!this.invalid) {
-        this.callback({});
+        this.showNext = true;
         this.isLoading = false;
+      }
+    },
+    submit() {
+      if (!this.$v.$invalid) {
+        this.callback({
+          color: this.primaryColor,
+          font: this.font,
+          mmoExperience: this.mmoExperience,
+        });
       }
     },
   },
