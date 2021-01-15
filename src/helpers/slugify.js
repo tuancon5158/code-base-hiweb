@@ -520,7 +520,6 @@ export default str => {
     Yu: ['Ю'],
     Zh: ['Ж'],
   };
-
   Object.keys(swaps).forEach(swap => {
     swaps[swap].forEach(s => {
       str = str.replace(new RegExp(s, 'g'), swap);

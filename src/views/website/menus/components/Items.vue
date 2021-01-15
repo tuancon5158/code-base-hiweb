@@ -43,6 +43,7 @@
 import draggable from 'vuedraggable';
 import { required, minLength, maxLength, email, helpers, decimal } from 'vuelidate/lib/validators';
 import modal from '@/components/Modal';
+import slugify from '@/helpers/slugify';
 
 export default {
   name: 'nested-draggable',
@@ -66,6 +67,8 @@ export default {
       item: {
         name: '',
         link: '',
+        handle: '',
+        children: [],
       },
       note: null,
       invalid: false,
@@ -79,7 +82,7 @@ export default {
         required,
       },
       link: {
-        required,
+        required: false,
       },
     },
   },
@@ -130,16 +133,23 @@ export default {
         let obj = {};
         obj.name = this.item.name;
         obj.link = this.item.link;
+        // obj.handle = slugify(this.item.name);
         obj.children = [];
         if (this.isCreated) {
-          this.note.children.push(obj);
+          this.note.children.push(this.item);
           this.showModal = false;
         } else {
           this.note.name = this.item.name;
+          this.note.handle = this.item.handle;
           this.note.link = this.item.link;
           this.showModal = false;
         }
       }
+    },
+  },
+  watch: {
+    'item.name': function() {
+      this.item.handle = slugify(this.item.name);
     },
   },
 };

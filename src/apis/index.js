@@ -11,14 +11,24 @@ export default class Request {
         'Content-Type': 'application/json',
       },
     });
+    this.api.interceptors.response.use(this.handleSuccess, this.handleError);
   }
   setToken(token) {
     this.api.defaults.headers.common.Authorization = `Bearer ${token}`;
+    this.api.defaults.headers.common['x-access-token'] = token;
+  }
+  setStoreId(storeId) {
+    this.api.defaults.headers.common['x-store-id'] = storeId;
   }
   setURL(url) {
     this.api.defaults.baseURL = `${url}`;
   }
-
+  handleSuccess(response) {
+    return response;
+  }
+  handleError(error) {
+    return Promise.reject(error);
+  }
   get(path, options) {
     return this.api.get(path, options);
   }
