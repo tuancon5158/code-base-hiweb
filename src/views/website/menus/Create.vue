@@ -57,6 +57,7 @@ import modal from '@/components/Modal';
 import Redirect from '@/components/RedirectTo';
 import Items from './components/Items';
 import slugify from '@/helpers/slugify';
+import { menuService } from '@/apis/menu.s';
 
 export default {
   display: 'Nested',
@@ -68,7 +69,6 @@ export default {
   data() {
     return {
       showModal: false,
-      newTree: {},
       title: '',
       item: {
         name: '',
@@ -84,6 +84,7 @@ export default {
       note: null,
       isCreated: false,
       isLoading: false,
+      errors: [],
     };
   },
   validations: {
@@ -197,9 +198,17 @@ export default {
       this.isLoading = true;
       this.invalidSubmit = this.$v.menu.title.$invalid;
       if (!this.invalidSubmit) {
-        console.log(this.menu);
+        try {
+          let menuData = menuService.addMenu(this.menu);
+          this.$router.push({ name: 'website.menus' });
+          this.isLoading = false;
+        } catch (error) {
+          this.errors = error.response.data.message || [];
+          this.isLoading = false;
+        }
+      } else {
+        this.isLoading = false;
       }
-      this.isLoading = false;
     },
   },
   watch: {
