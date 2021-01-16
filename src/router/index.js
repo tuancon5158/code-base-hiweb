@@ -1,10 +1,13 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import productRoutes from '@/router/website/products';
+import collectionRoutes from '@/router/website/collections';
+import ordersRoutes from '@/router/website/orders';
 import menuRoutes from '@/router/website/menus';
 import pageRoutes from '@/router/website/pages';
 import settingRoutes from '@/router/website/settings';
 import redirectsRoutes from '@/router/website/redirects';
+const HomeWesite = () => import(/* webpackChunkName: "" */ '@/views//website/home');
 const Home = () => import(/* webpackChunkName: "" */ '@/views/home');
 const Website = () => import(/* webpackChunkName: "" */ '@/views/website');
 const Page404 = () => import(/* webpackChunkName: "" */ '@/views/404');
@@ -18,14 +21,22 @@ export default new VueRouter({
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: Home,
+      name: 'websiteasdas',
+      component: HomeWesite,
     },
     {
       path: '/w/:domain',
       name: 'website',
       component: Website,
-      children: [...productRoutes, ...menuRoutes, ...redirectsRoutes, ...pageRoutes, ...settingRoutes],
+      children: [
+        ...productRoutes,
+        ...menuRoutes,
+        ...redirectsRoutes,
+        ...pageRoutes,
+        ...settingRoutes,
+        ...collectionRoutes,
+        ...ordersRoutes,
+      ],
     },
 
     {
@@ -42,7 +53,7 @@ export default new VueRouter({
       component: Survey,
     },
 
-    { path: '/404', component: Page404 },
-    // { path: '*', redirect: '/404' },
+    { path: '/*', component: Page404 },
+    // { path: '/', redirect: { name: 'website' } },
   ],
 });

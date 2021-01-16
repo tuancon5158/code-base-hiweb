@@ -2,6 +2,7 @@ import axios from 'axios';
 
 export default class Request {
   api = null;
+  // store1212.vnstore.xyz
   constructor() {
     // eslint-disable-next-line no-undef
     this.api = axios.create({
@@ -12,6 +13,9 @@ export default class Request {
       },
     });
     this.api.interceptors.response.use(this.handleSuccess, this.handleError);
+  }
+  setBaseURL(baseURL) {
+    this.api.defaults.baseURL = baseURL;
   }
   setToken(token) {
     this.api.defaults.headers.common.Authorization = `Bearer ${token}`;

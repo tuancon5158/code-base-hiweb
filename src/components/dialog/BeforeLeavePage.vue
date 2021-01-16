@@ -1,5 +1,5 @@
 <template>
-  <v-dialog persistent v-model="$parent.isShowWarningLeavePage" width="700">
+  <v-dialog persistent v-model="$parent.isShowWarningLeavePage" width="700" style="transform-origin: center top;">
     <v-card>
       <v-card-title class=" grey lighten-2">
         Unsaved changes
@@ -28,4 +28,10 @@
 export default {};
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss">
+.dialog--warnning-leave-page {
+  .v-dialog__content {
+    align-items: start;
+  }
+}
+</style>

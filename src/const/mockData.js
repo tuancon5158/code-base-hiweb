@@ -11,13 +11,26 @@ const menu = [
     children: [
       {
         title: 'All products',
-        path: '/w/abc.hiwebio/products',
         name: 'website.products',
       },
       {
+        title: 'Collections',
+        name: 'website.collections',
+      },
+      {
         title: 'Test componet',
-        path: '/w/abc.hiwebio/products/dattest',
         name: 'website.products.dattest',
+      },
+    ],
+  },
+  {
+    title: 'Orders',
+    icon: 'fas fa-clipboard',
+    name: 'website.orders',
+    children: [
+      {
+        title: 'All orders',
+        name: 'website.orders',
       },
     ],
   },
@@ -30,7 +43,6 @@ const menu = [
   {
     title: 'Online Store',
     icon: 'fas fa-store-alt',
-    path: '/w/abc.hiwebio/',
     children: [
       {
         title: 'Pages',
